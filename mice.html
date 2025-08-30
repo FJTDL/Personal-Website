@@ -15,16 +15,21 @@
   </nav>
 
   <!-- Project Content -->
-  <section class="max-w-4xl mx-auto py-16 px-4">
+  <section class="bg-gradient-to-r from-red-500 to-yellow-600 text-white py-20  mx-auto text-center">
+    <div class="max-w-4xl mx-auto text-center">
     <h1 class="text-4xl font-bold mb-6">Statistical Methods in Analysing Mice Migration in Abel Tasman National Park</h1>
     <p class="text-lg leading-relaxed mb-6">
       Building on a project from STATS 399 - Capstone, the objective of this analysis is to determine
       if the 2007 extermination events on the Tonga and Adele islands were successful, the implications of this,
       and what further insights can be gained from the project.
     </p>
+    </div>
+  </section>
+  <section class="max-w-4xl mx-auto py-16 px-4">
+
 
     <!-- Techniques -->
-    <h2 class="text-2xl font-semibold mb-4">Techniques</h2>
+    <h2 class="text-2xl font-semibold mb-4 bg-gradient-to-r from-red-500 to-yellow-600 text-white px-4 py-2 rounded-lg inline-block">Techniques</h2>
     <ul class="list-disc list-inside mb-10 space-y-2">
       <li>Partial Least Squares - Discriminant Analysis (PLS-DA)</li>
       <li>Hamming Distance Hierarchical Clustering</li>
@@ -35,7 +40,7 @@
   <section class="max-w-4xl mx-auto px-4 space-y-16">
     <!-- Preamble -->
     <div>
-      <h2 class="text-2xl font-semibold mb-4">Preamble</h2>
+      <h2 class="text-2xl font-semibold mb-4 bg-gradient-to-r from-red-500 to-yellow-600 text-white px-4 py-2 rounded-lg inline-block">Preamble</h2>
       <p class="text-gray-700 leading-relaxed">
         Firstly, I found the original theory of using Principle Component Analysis (PCA)
         to be a very interesting idea, and found that it did yield accurate results.
@@ -62,7 +67,7 @@
     </div>
 
     <!-- Slideshow 1 -->
-    <h2 class="text-2xl font-semibold mt-12 mb-4">PLS-DA</h2>
+    <h2 class="text-2xl font-semibold mb-4 bg-gradient-to-r from-red-500 to-yellow-600 text-white px-4 py-2 rounded-lg inline-block">PLS-DA</h2>
     <div class="relative w-full overflow-hidden rounded-xl shadow-lg bg-white">
       <div class="flex transition-transform duration-500" id="slideshow1">
         <!-- Slide 1 -->
@@ -129,8 +134,8 @@
       Thankfully, there is a well known distance we can easily implement to fix this, called the <b>Hamming Distance</b>, which we can implement easily with the function
       below.
     </p>
-    <h2 class="text-2xl font-semibold mb-4">Hamming Distance Function</h2>
-    <pre class="bg-gray-900 text-blue-200 p-4 rounded-lg overflow-x-auto text-sm">
+    <h2 class="text-2xl font-semibold mb-4 bg-gradient-to-r from-red-500 to-yellow-600 text-white px-4 py-2 rounded-lg inline-block">Hamming Distance Function</h2>
+    <pre class="bg-black text-white p-4 rounded-lg overflow-x-auto text-sm">
       <code>
         match_dist <- function(x, y) {
           sum(x != y) 
@@ -145,7 +150,7 @@
     </p>
 
     <!-- Slideshow 2 -->
-    <h2 class="text-2xl font-semibold mt-12 mb-4">Hierarchical Clustering Solutions.</h2>
+    <h2 class="text-2xl font-semibold mb-4 bg-gradient-to-r from-red-500 to-yellow-600 text-white px-4 py-2 rounded-lg inline-block">Hierarchical Clustering Solutions.</h2>
     <div class="relative w-full overflow-hidden rounded-xl shadow-lg bg-white">
       <div class="flex transition-transform duration-500" id="slideshow2">
         <!-- Slide 1 -->
@@ -204,14 +209,14 @@
 
   </section>
   <br>
-  <h2>Permutation Testing</h2>
+  <h2 class = "text-2xl font-semibold mb-4 bg-gradient-to-r from-red-500 to-yellow-600 text-white px-4 py-2 rounded-lg inline-block">Permutation Testing</h2>
   <p>One advantage to this distance-based method is that we can compare the distances between two groups for statistical significance,
   and draw a more robust conclusion about the origin of the mice. However, many of the graphical methods proved viable in finding the 
   likely conclusions, so we do not need to apply many of these. In fact, we shall only apply one, to try to answer the question of if
   the Fisherman island population really is a "spin-off" of the Adele07 population, or if it came from the mainland.</p>
   <br>
-  <h2 class="text-2xl font-semibold mb-4">Permutation Testing</h2>
-  <pre class="bg-gray-900 text-blue-200 p-4 rounded-lg overflow-x-auto text-sm">
+  <h2 class="text-2xl font-semibold mb-4 bg-gradient-to-r from-red-500 to-yellow-600 text-white px-4 py-2 rounded-lg inline-block">Permutation Testing</h2>
+  <pre class="bg-black text-white p-4 rounded-lg overflow-x-auto text-sm">
     <code>
       adele7 <- grouped_mainland %>%
         filter(
@@ -267,7 +272,7 @@
     </code>
   </pre>
   <br>
-  <h1 class="text-2xl font-semibold mb-4">Conclusions</h1>
+  <h1 class="text-2xl font-semibold mb-4 bg-gradient-to-r from-red-500 to-yellow-600 text-white px-4 py-2 rounded-lg inline-block">Conclusions</h1>
 
   <p>
     Many of the conclusions drawn have been listed in prior sections, so consider this a summary.
