@@ -42,9 +42,7 @@
     <div>
       <h2 class="text-2xl font-semibold mb-4 bg-gradient-to-r from-red-500 to-yellow-600 text-white px-4 py-2 rounded-lg inline-block">Preamble</h2>
       <p class="text-gray-700 leading-relaxed">
-        Firstly, I found the original theory of using Principle Component Analysis (PCA)
-        to be a very interesting idea, and that it did work as intended, allowing us to investigate
-        the origins of the mice populations.
+        Using PCA is an excellent way to reduce high dimensional data to a much lower space, and worked very well when using scatterplots.
         <br>
         <br>
         However, when it comes to trying to differentiate between groups, LDA is a more standard technique.
@@ -52,6 +50,8 @@
         still has requirements in order to work properly. Although I could have checked if the requirements were met,
         I chose to use a non-parametric method instead, skipping over these requirements, and drawing results from
         a PLS-DA model.
+        <br>
+        Ultimately, I could've tried this method with the derived axes akin to the original PCA method, but I wanted to visualise with multiple groups instead.
         <br>
         <br>
         Additionally, since we are considering genetic data, it would make sense to try a
@@ -276,8 +276,7 @@
       p_value
     </code>
   </pre>
-  <p>
-    Which gives us a p-value of 9.999e-05, giving very strong evidence to suggest that the Fisherman island
+  <p>Which gives us a p-value of 9.999e-05, giving very strong evidence to suggest that the Fisherman island
     2007 population is a subset of the Adele 2007 population and not the mainland.
   </p>
   <br>
