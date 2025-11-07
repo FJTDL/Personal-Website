@@ -1,396 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-site-verification" content="XUX6SIVRRv1zs2qpb4KNb06m4wYKBMkiElCDauwoVic" />
-  <title>Finn de Lange | Personal Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finn de Lange | Statistician & Researcher</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
+
+<body class="bg-gray-50 text-gray-800">
   <!-- Navbar -->
-  <nav class="bg-white shadow-md sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-
-      <h1 class="text-xl font-bold">Finn J.T de Lange</h1>
-
-      <ul class="flex space-x-6">
-        <li>
-          <a href="#about" class="hover:text-blue-600">
-            About
-          </a>
-        </li>
-        <li>
-          <a href="#projects" class="hover:text-blue-600">
-            Projects
-          </a>
-        </li>
-        <li>
-          <a href="#contact" class="hover:text-blue-600">
-            Contact
-          </a>
-        </li>
-        <li>
-          <a href = "mice.html" class = "hover:text-blue-600">
-            Capstone
-          </a>
-        </li>
+  <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-semibold tracking-tight">Finn J.T. de Lange</h1>
+      <ul class="flex space-x-6 text-sm font-medium">
+        <li><a href="#about" class="hover:text-blue-600 transition">About</a></li>
+        <li><a href="#skills" class="hover:text-blue-600 transition">Skills</a></li>
+        <li><a href="#projects" class="hover:text-blue-600 transition">Projects</a></li>
+        <li><a href="#contact" class="hover:text-blue-600 transition">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-r from-green-500 to-blue-500 text-white py-20">
-    <div class="max-w-4xl mx-auto text-center">
-
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">
-        Kia ora, I'm Finn 👋
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 text-white py-28">
+    <div class="max-w-4xl mx-auto text-center px-4">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        Finn de Lange
       </h2>
-      <p class="text-lg md:text-xl mb-6">
-        A kiwi data scientist and developer passionate about analytics and data driven decision making.
+      <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">
+        Statistician and Mathematical Scientist passionate about data analytics, applied research, and evidence-based decision making.
       </p>
-      <a href="#projects" class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-200">
-        See My Work
+      <a href="#projects" class="mt-8 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+        Explore My Work
       </a>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="max-w-4xl mx-auto py-16 px-4">
-    <h3 class="text-2xl font-semibold mb-4 bg-gradient-to-r px-4 py-2 rounded-lg inline-block">
-      About Me
-    </h3>
-    <p class="text-lg leading-relaxed">
-      I'm currently finishing a degree in Statistics with minors in Data Analysis and Software Development. 
-      My passion is in quantification and turning data into actionable insights, which I have done extensively
-      with education and environmental data. I strongly advocate for self-learning, being a self-taught programmer.
-      This entire site was made with no formal training in web development, and my experience as a programmer has
-      been integral in my career as a statistician and data scientist.
-
-      When I'm not coding, I like reading, exploring new ideas, and finding efficient solutions to problems.
-      I have decided to pursue further studies as an honours student in statistics for 2026.
+  <!-- About -->
+  <section id="about" class="max-w-4xl mx-auto py-20 px-6">
+    <h3 class="text-2xl font-semibold mb-6 border-b-2 border-blue-600 inline-block">About Me</h3>
+    <p class="leading-relaxed text-gray-700">
+      I’ve always been driven by curiosity — an interest in understanding how systems work, evolve, and can be measured. 
+      After beginning in engineering, I found my passion in applied mathematics and statistics, where analytical methods meet real-world challenges.
+    </p>
+    <p class="mt-4 leading-relaxed text-gray-700">
+      I’ve worked across diverse datasets, including education, economic, ecological, and genetic research. 
+      Currently, I’m pursuing an Honours degree in Statistics at the University of Auckland, focusing on signal analysis for the LISA Pathfinder mission to improve inference on gravitational wave origins.
     </p>
   </section>
 
-<!-- Skills Section -->
-<section id="skills" class="bg-gray-100 max-w-6xl mx-auto py-16 px-4">
+  <!-- Skills -->
+  <section id="skills" class="bg-white py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="text-2xl font-semibold mb-6 border-b-2 border-blue-600 inline-block">Skills</h3>
+      <div class="grid md:grid-cols-2 gap-12 mt-8">
+        <div>
+          <h4 class="text-lg font-semibold mb-3 text-gray-800">Programming & Tools</h4>
+          <ul class="grid grid-cols-2 gap-y-2 text-gray-700">
+            <li>Python</li><li>R</li><li>SQL</li><li>Excel</li><li>Tableau</li>
+            <li>Java</li><li>Git / GitHub</li><li>Database Design</li><li>Agile Methods</li>
+          </ul>
+        </div>
 
-  <h3 class="text-2xl font-semibold mb-4 bg-gradient-to-r px-4 py-2 rounded-lg inline-block -ml-4">
-    Skills
-  </h3>
-
-  <div class="grid md:grid-cols-2 gap-12">
-    <!-- Programming & Tools -->
-    <div>
-
-      <h4 class="text-xl font-semibold mb-4 bg-gradient-to-r px-4 py-2 rounded-lg inline-block -ml-4">
-        Programming & Tools
-      </h4>
-      
-      <ul class="list-disc list-inside space-y-3 text-gray-700">
-        <li>
-          <span class="font-medium">
-            Python
-          </span>
-        </li>
-        <li>
-          <span class="font-medium">
-            R
-          </span>
-        </li>
-        <li>
-          <span class="font-medium">
-            SQL
-          </span>
-        </li>
-        <li>
-          <span class="font-medium">
-            Excel
-          </span>
-        </li>
-        <li>
-          <span class="font-medium">
-            Tableau
-          </span>
-        </li>
-        <li>
-          <span class="font-medium">
-            Java
-          </span>
-        </li>
-        <li>
-          <span class="font-medium">
-            Git/Github
-          </span>
-        </li>
-        <li>
-          <span class="font-medium">
-            ERD / Database Design
-          </span>
-        </li>
-        <li>
-          <span class="font-medium">
-            MacOS / WindowsOS
-          </span>
-        </li>
-        <li>
-          <span class="font-medium">
-            Kanban, Scrum, & Agile Methods
-          </span>
-        </li>
-      </ul>
-
+        <div>
+          <h4 class="text-lg font-semibold mb-3 text-gray-800">Statistical & Analytical Methods</h4>
+          <ul class="space-y-1 text-gray-700">
+            <li>Multivariate Analysis (PCA, LDA, PLS, Clustering)</li>
+            <li>Time Series (ARIMA, ETS, Forecasting)</li>
+            <li>Logistic Regression, Hypothesis Testing, Experimental Design</li>
+            <li>Optimisation & Simulation</li>
+            <li>Bayesian Methods & Probabilistic Modelling</li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <!-- Statistical & Analytical Methods -->
-    <div>
-
-      <h4 class="text-xl font-semibold mb-4 bg-gradient-to-r px-4 py-2 rounded-lg inline-block -ml-4">
-        Statistical & Analytical Methods
-      </h4>
-      
-      <ul class="list-disc list-inside space-y-3 text-gray-700">
-        <li>
-          <span class="font-medium">
-            Multivariate Methods:
-          </span>
-           PCA, LDA, PLS, PLS-DA, K-means & Hierarchical Clustering
-        </li>
-        <li>
-          <span class="font-medium">
-            Time Series Modelling:
-          </span>
-           ARIMA, ETS, Dynamic Regression with ARIMA Errors, Forecasting
-          </li>
-        <li>
-          <span class="font-medium">
-            Data Analysis:
-          </span>
-           Logistic Regression, Hypothesis Testing, Experimental Design
-          </li>
-        <li>
-          <span class="font-medium">
-            Optimisation:
-          </span>
-           Lagrange Multipliers, Linear Programming, Inventory Models, Simulation, Stochastic Modelling
-          </li>
-        <li>
-          <span class="font-medium">
-            Probability & Bayesian Statistics:
-          </span>
-           Distributions, Conditional Probabilities, Posterior Estimation, Risk Analysis
-          </li>
-        <li>
-          <span class="font-medium">
-            Survey/Experiment Design:
-          </span>
-           Blocking, Blinding, Bias Accounting, Analysis
-          </li>
-      </ul>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- Projects Section -->
-<section id="projects" class="bg-gray-50 py-16">
-  <div class="max-w-6xl mx-auto px-4">
-
-    <h3 class="text-2xl font-semibold mb-4 bg-gradient-to-r px-4 py-2 rounded-lg inline-block">
-      Projects
-    </h3>
-
-    <!-- Carousel Wrapper -->
-    <div class="relative overflow-hidden">
-      <!-- Slides container -->
-      <div id="carousel" class="flex transition-transform duration-500 ease-in-out">
-        
-        <!-- Project 1 -->
-        <div class="flex-[0_0_100%] md:flex-[0_0_33.3333%] p-4">
-          <div class="bg-white rounded-xl shadow-md p-6 h-full">
-            <h4 class="text-xl font-semibold mb-2">
-              Fetal Health Prediction
-            </h4>
-            <p class="text-gray-600 mb-4">
-              PCA + logistic regression on fetal heart measurements, with PLS-DA and Naive Bayes comparisons.
-              <br>
-              <b>
-                Final model: 90%+ Accuracy
-              </b>
-            </p>
-            <a href="https://github.com/FJTDL/fetal-health" target="_blank" class="text-blue-600 font-medium hover:underline">
-              View on GitHub →
-            </a>
-          </div>
+  <!-- Projects -->
+  <section id="projects" class="bg-gray-50 py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="text-2xl font-semibold mb-6 border-b-2 border-blue-600 inline-block">Selected Projects</h3>
+      <div class="grid md:grid-cols-3 gap-8 mt-10">
+        <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+          <h4 class="text-lg font-semibold mb-2">Fetal Health Prediction</h4>
+          <p class="text-gray-600 text-sm mb-4">
+            Logistic regression with PCA and PLS-DA comparisons for fetal heart data.
+          </p>
+          <a href="https://github.com/FJTDL/fetal-health" target="_blank" class="text-blue-600 text-sm font-medium hover:underline">View on GitHub →</a>
         </div>
 
-        <!-- Project 2 -->
-        <div class="flex-[0_0_100%] md:flex-[0_0_33.3333%] p-4">
-          <div class="bg-white rounded-xl shadow-md p-6 h-full">
-            <h4 class="text-xl font-semibold mb-2">
-              ARIMA Modelling of Employment
-            </h4>
-            <p class="text-gray-600 mb-4">
-              Dynamic Regression with ARIMA errors to study NZ job market trends.
-              <br>
-              <b>
-                Identified key industries for growth and stability.
-              </b>
-            </p>
-            <a href="https://github.com/FJTDL/employment" target="_blank" class="text-blue-600 font-medium hover:underline">
-              View on GitHub →
-            </a>
-          </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+          <h4 class="text-lg font-semibold mb-2">Employment Modelling</h4>
+          <p class="text-gray-600 text-sm mb-4">
+            Dynamic Regression with ARIMA errors to model job market trends across New Zealand.
+          </p>
+          <a href="https://github.com/FJTDL/employment" target="_blank" class="text-blue-600 text-sm font-medium hover:underline">View on GitHub →</a>
         </div>
 
-        <!-- Project 3 -->
-        <div class="flex-[0_0_100%] md:flex-[0_0_33.3333%] p-4">
-          <div class="bg-white rounded-xl shadow-md p-6 h-full">
-            <h4 class="text-xl font-semibold mb-2">
-              AI in Student Engagement
-            </h4>
-            <p class="text-gray-600 mb-4">
-              Research with LLMs (OpenAI collaboration) to classify student engagement. 
-              <b>
-                Currently working as a Senior Research Assitant, leading a team.
-              </b>
-            </p>
-            <p class="text-sm text-gray-500">Confidential, not public.</p>
-          </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+          <h4 class="text-lg font-semibold mb-2">AI in Student Engagement</h4>
+          <p class="text-gray-600 text-sm mb-4">
+            Research collaboration using LLMs to classify engagement patterns. Currently leading a team as Senior Research Assistant.
+          </p>
+          <p class="text-xs text-gray-400">Confidential — not public</p>
         </div>
-
-        <!-- Project 4 -->
-        <div class="flex-[0_0_100%] md:flex-[0_0_33.3333%] p-4">
-          <div class="bg-white rounded-xl shadow-xl border-4 border-yellow-400 p-6 h-full transform hover:scale-105 transition duration-300">
-            <h4 class="text-xl font-semibold mb-2 text-yellow-700">
-              Django Emission Calculator
-            </h4>
-            <p class="text-gray-700 mb-4">
-              Year 13 project recommending ways to reduce footprint. 
-              <br>
-              <b>2nd place 123Tech 2022 (Senior Solo)</b>.
-            </p>
-            <a href="https://github.com/FJTDL/emitls" target="_blank" class="text-yellow-600 font-medium hover:underline">
-              View on GitHub →
-            </a>
-          </div>
-        </div>
-
-        <!-- Project 5 -->
-        <div class="flex-[0_0_100%] md:flex-[0_0_33.3333%] p-4">
-          <div class="bg-white rounded-xl shadow-md p-6 h-full">
-            <h4 class="text-xl font-semibold mb-2">
-              Climate Modelling Technical Assessment
-            </h4>
-            <p class="text-gray-600 mb-4">
-              Use of over 2 million datapoints from 1922-2022 to study the behaviour of rainfall and temperature in New Zeland, 
-              using data provided by the Ministry for the Environment. 
-              <br>
-              <b>
-                My models pushed 95% adjusted R-squared
-              </b>
-            </p>
-            <a href="https://github.com/FJTDL/employment" target="_blank" class="text-blue-600 font-medium hover:underline">
-              View on GitHub →
-            </a>
-          </div>
-        </div>
-
       </div>
 
-      <!-- Controls -->
-      <button id="prevBtn" class="absolute top-1/2 left-2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100">
-        ‹
-      </button>
-      <button id="nextBtn" class="absolute top-1/2 right-2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100">
-        ›
-      </button>
-    </div>
-
-    <!-- Optional: "See more projects" button -->
-    <div class="text-center mt-8">
-      <a href="https://github.com/FJTDL" target="_blank" class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700">
-        See More Projects on GitHub
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Carousel Script -->
-<script>
-  const carousel = document.getElementById("carousel");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
-
-  let currentIndex = 0;
-  const totalSlides = carousel.children.length;
-
-  function updateCarousel() {
-    const slideWidth = carousel.children[0].offsetWidth;
-    carousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-  }
-
-  nextBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % totalSlides; // wrap forward
-    updateCarousel();
-  });
-
-  prevBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; // wrap backward
-    updateCarousel();
-  });
-
-  // Reset on window resize
-  window.addEventListener("resize", updateCarousel);
-</script>
-
-
-
-<!-- Contact Section -->
-<section id="contact" class="max-w-4xl mx-auto py-16 px-4">
-  <h3 class="text-2xl font-semibold mb-4 bg-gradient-to-r px-4 py-2 rounded-lg inline-block">
-    Contact
-  </h3>
-  <p class="mb-6">
-    I'd love to connect! Feel free to reach out:
-  </p>
-
-  <div class="flex flex-col md:flex-row items-center md:items-start md:space-x-12">
-    <!-- Contact Info -->
-    <ul class="space-y-2 text-lg text-gray-700">
-      <li>
-        📧 
-        <a href="mailto:finn.jt.delange@gmail.com" class="text-blue-600 hover:underline">
-          Email
+      <div class="text-center mt-10">
+        <a href="https://github.com/FJTDL" target="_blank" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+          View More on GitHub
         </a>
-      </li>
-      <li>
-        💼 
-        <a href="https://www.linkedin.com/in/finn-de-lange-578637225" target="_blank" class="text-blue-600 hover:underline">
-          LinkedIn
-        </a>
-      </li>
-      <li>💻 
-        <a href="https://github.com/FJTDL" target="_blank" class="text-blue-600 hover:underline">
-          GitHub
-        </a>
-      </li>
-    </ul>
-
-    <!-- Image -->
-    <div class="mt-6 md:mt-0">
-      <img src="Static/Personal_pic.webp" alt="Finn de Lange" class="w-48 h-48 rounded-full shadow-lg object-cover">
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- Contact -->
+  <section id="contact" class="max-w-4xl mx-auto py-20 px-6">
+    <h3 class="text-2xl font-semibold mb-6 border-b-2 border-blue-600 inline-block">Contact</h3>
+    <p class="text-gray-700 mb-6">
+      I’m always open to research collaborations or professional opportunities — feel free to reach out.
+    </p>
+
+    <div class="flex flex-col md:flex-row items-center md:items-start md:space-x-10">
+      <ul class="space-y-2 text-gray-700">
+        <li>📧 <a href="mailto:finn.jt.delange@gmail.com" class="text-blue-600 hover:underline">Email</a></li>
+        <li>💼 <a href="https://www.linkedin.com/in/finn-de-lange-578637225" target="_blank" class="text-blue-600 hover:underline">LinkedIn</a></li>
+        <li>💻 <a href="https://github.com/FJTDL" target="_blank" class="text-blue-600 hover:underline">GitHub</a></li>
+      </ul>
+      <img src="Static/Personal_pic.webp" alt="Finn de Lange" class="mt-6 md:mt-0 w-40 h-40 rounded-full shadow-md object-cover" />
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="bg-white py-6 mt-12 shadow-inner">
-    <div class="max-w-6xl mx-auto text-center text-gray-500">
-    </div>
+  <footer class="bg-white py-6 text-center text-gray-500 text-sm border-t">
+    2025 Finn J.T. de Lange — All Rights Reserved
   </footer>
 </body>
 </html>
