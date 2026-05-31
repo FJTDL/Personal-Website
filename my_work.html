@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Current Research | Finn de Lange</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header Navigation -->
+  <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-semibold tracking-tight hover:text-blue-600 transition">Finn J.T. de Lange</a>
+      <ul class="flex space-x-6 text-sm font-medium">
+        <li><a href="index.html#about" class="hover:text-blue-600 transition">About</a></li>
+        <li><a href="index.html#skills" class="hover:text-blue-600 transition">Skills</a></li>
+        <li><a href="index.html#projects" class="hover:text-blue-600 transition">Projects</a></li>
+        <li><a href="research.html" class="text-blue-600 font-semibold">Research</a></li>
+        <li><a href="index.html#contact" class="hover:text-blue-600 transition">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Title Header Section -->
+  <header class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 text-white py-16">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs text-cyan-300 font-medium mb-4 border border-white/10">
+        <span class="h-2 w-2 rounded-full bg-cyan-400 animate-pulse"></span> Active Lab Notebook
+      </div>
+      <h2 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Thoughts & Current Work</h2>
+      <p class="text-md md:text-lg text-gray-300 max-w-2xl leading-relaxed">
+        Documenting my research journey, statistical notes, and academic explorations across astrophysical signal analysis pipelines.
+      </p>
+    </div>
+  </header>
+
+  <!-- Content Container (Alternating Split Squares Layout) -->
+  <main class="max-w-5xl mx-auto py-16 px-6">
+    
+    <!-- Section Sub-Banner -->
+    <div class="border-b border-gray-200 pb-6 mb-16">
+      <h3 class="text-2xl font-bold border-b-2 border-blue-600 inline-block mb-3 tracking-tight text-gray-900">
+        Honours Research 2026
+      </h3>
+      <p class="text-sm text-gray-500 max-w-2xl">
+        A deep dive into the methodology, pipeline development, and simulation notes framing my current dissertation work at the University of Auckland.
+      </p>
+    </div>
+
+    <div class="space-y-24">
+      <!-- Row 1 -->
+      <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+        <!-- Text Block -->
+        <div class="w-full md:w-1/2 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">A History</span>
+            <span class="text-xs text-gray-400"></span>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 tracking-tight">Gravitational Waves</h3>
+          <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+            In 1915, Albert Einstein's general theory of relativity provided the strongest theoretical basis for the existence of gravitational waves, which had previously
+            been hypothesised. A century later, in 2015, the LIGO detector intercepted the first recorded gravitational wave, thus confirming their existence. Since then,
+            we have been able to expand the number of detectors globally, improve their sensitivity, and use these waves to infer the event of their origin.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-2">
+            <span class="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-md font-medium">LIGO / Virgo / KAGRA</span>
+            <span class="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-md font-medium">Cosmology</span>
+          </div>
+        </div>
+        <!-- Image Block -->
+        <div class="w-full md:w-1/2">
+          <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 transform hover:-translate-y-1 transition duration-300">
+            <img src="Static/pixel.png" alt="Signal Processing Chart" class="w-full h-64 object-cover rounded-xl bg-slate-100" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2  -->
+      <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+        <div class="w-full md:w-1/2 md:order-2 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="text-purple-600 font-bold text-xs uppercase tracking-widest">Issues</span>
+            <span class="text-xs text-gray-400"></span>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 tracking-tight">Glitches</h3>
+          <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+            Unfortunately, such sensitive instruments are prone to external factors interfering with their readings. Detector noise is inherent to the system, 
+            and by assumptions we can account for this in our mathematics. However, glitches are patterns in time or large high-powered sections in time that
+            cause significant issues in inference, especially with their potential to change the signal when they overlap. 
+          </p>
+          <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+            My work focuses on the blip glitches, which have a teardrop shape that is morphologically similar to the signatures of events we want to study. 
+          </p>
+          <div class="flex flex-wrap gap-2 pt-2">
+            <span class="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-md font-medium">Instrumentation</span>
+            <span class="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-md font-medium">Noise/Glitches</span>
+          </div>
+        </div>
+        <!-- Image Block -->
+        <div class="w-full md:w-1/2">
+          <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 transform hover:-translate-y-1 transition duration-300">
+            <img src="Static/raw.png" alt="Signal Processing Chart" class="w-full h-64 object-cover rounded-xl bg-slate-100" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+        <!-- Text Block -->
+        <div class="w-full md:w-1/2 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Convolutional Neural Networks</span>
+            <span class="text-xs text-gray-400"></span>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 tracking-tight">De-glitching</h3>
+          <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+            The first stage of my work involved the development of a Convolutional Neural Network (CNN) to learn the outline of glitches I simulate
+            from an open access Generalised Adversarial Network, gengli, through Python, where I inject these glitches into a simulated LIGO background
+            noise with Core-Collapse Supernovae signals injected as well. This time series data is then passed to a Continuous Wavelet Transform (CWT)
+            that converts the time-domain data to the time-frequency domain, which I then convert to a scalogram as a graphical representation to allow
+            the CNN to learn spatial features of the data in order to mask the sections of the transformed data the relate to the glitch - thus cleaning
+            our data while leaving the signal intact for inference.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-2">
+            <span class="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-md font-medium">LIGO / Virgo / KAGRA</span>
+            <span class="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-md font-medium">Cosmology</span>
+          </div>
+        </div>
+        <!-- Image Block -->
+        <div class="w-full md:w-1/2">
+          <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 transform hover:-translate-y-1 transition duration-300">
+            <img src="Static/editted.png" alt="Signal Processing Chart" class="w-full h-64 object-cover rounded-xl bg-slate-100" />
+          </div>
+        </div>
+      </div>
+
+            <!-- Row 4 -->
+      <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+        <div class="w-full md:w-1/2 md:order-2 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="text-purple-600 font-bold text-xs uppercase tracking-widest">Amortised Inference</span>
+            <span class="text-xs text-gray-400"></span>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 tracking-tight">Neural Posterior Estimation (NPE)</h3>
+          <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+            Our data does not lend itself to the standard Markov Chain Monte Carlo methods traditionally used in Bayesian statistics, so we instead utilise
+            deep learning a second time; here, to perform Neural Posterior Estimation, where we train a network to learn to predict a posterior distribution
+            in a matter of seconds if not less, based on the data. Our approach involves the use of normalising flows implemented through masked autoregressive
+            flows.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-2">
+            <span class="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-md font-medium">Instrumentation</span>
+            <span class="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-md font-medium">Noise/Glitches</span>
+          </div>
+        </div>
+        <!-- Image Block -->
+        <div class="w-full md:w-1/2">
+          <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 transform hover:-translate-y-1 transition duration-300">
+            <img src="Static/normalising.png" alt="Signal Processing Chart" class="w-full h-64 object-cover rounded-xl bg-slate-100" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 5  -->
+      <div class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-16">
+        <!-- Text Block -->
+        <div class="w-full md:w-1/2 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="text-cyan-600 font-bold text-xs uppercase tracking-widest">PhD Outlook // 2027</span>
+            <span class="text-xs text-gray-400">• Future Focus</span>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 tracking-tight">Core-Collapse Supernovae (CCSNe) Modulations</h3>
+          <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+            After discussion with my supervisor, I am set to continue my research into 2027, where I will focus on applying deep learning 
+            methods to bridging the gap between the Newtonian simulation methods and the methods given by Einstein's relativistic equations.
+            This research is funded under a Marsden fund, and involves international collaborators from France and Kazakhstan, and aims to
+            reduce the time taken to simulate an accurate CCSN signal from months to days - ideally, <i>seconds</i>.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-2">
+            <span class="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-md font-medium">CCSNe</span>
+            <span class="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-md font-medium">Simulation</span>
+            <span class="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-md font-medium">PhD</span>
+          </div>
+        </div>
+        <!-- Image Block -->
+        <div class="w-full md:w-1/2">
+          <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 transform hover:-translate-y-1 transition duration-300">
+            <img src="Static/statue.png" alt="Supernova Simulation Visualization" class="w-full h-64 object-contain rounded-xl bg-slate-50" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Return Home Link -->
+  <section class="max-w-5xl mx-auto pb-20 px-6 text-center">
+    <a href="index.html" class="inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-700 gap-1 group">
+      <span class="transform group-hover:-translate-x-1 transition">←</span> Back to main portfolio
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white py-6 text-center text-gray-500 text-sm border-t">
+    2026 Finn J.T. de Lange
+  </footer>
+
+</body>
+</html>

@@ -65,7 +65,7 @@
           <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
           <img 
             src="Static/pixel.png" 
-            alt="Research Visualization" 
+            alt="Research Visualisation" 
             class="relative rounded-2xl shadow-2xl w-full max-w-md object-cover transform hover:-translate-y-1 transition duration-500"
           />
         </div>
@@ -114,44 +114,71 @@
   </section>
 
   <section id="projects" class="bg-gray-50 py-20 overflow-hidden">
-    <div class="max-w-6xl mx-auto px-6 mb-12">
-      <h3 class="text-2xl font-semibold border-b-2 border-blue-600 inline-block">Selected Projects</h3>
+  <div class="max-w-6xl mx-auto px-6 mb-12">
+    <h3 class="text-2xl font-semibold border-b-2 border-blue-600 inline-block mb-8">Selected Projects</h3>
+    
+    <!-- Clean, Full-Width Research Banner -->
+    <div class="bg-slate-900 text-white p-8 rounded-2xl shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-6 transform hover:-translate-y-0.5 transition duration-300">
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="h-2 w-2 rounded-full bg-cyan-400 animate-pulse"></span>
+          <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Current Research</span>
+        </div>
+        <h4 class="text-xl font-bold mb-2">Gravitational Waves & Deep Learning</h4>
+        <p class="text-gray-300 text-sm leading-relaxed">
+          Pursuing my Honours degree at UoA focusing on advanced signal analysis pipelines, moving toward doctoral work on CCSNe gravitational wave signatures using amortised deep learning architectures.
+        </p>
+      </div>
+      <div class="flex-shrink-0">
+        <a href="my_work.html" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-3 rounded-xl transition shadow-lg shadow-blue-900/30">
+          Explore Current Research <span class="ml-2">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- The original project grid structure continues neatly below -->
+  <div class="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-stretch">
+    <!-- Left Column: Statue Graphic -->
+    <div class="w-full lg:w-1/4 flex justify-center lg:justify-start mb-10 lg:mb-0 lg:pr-8">
+      <div class="lg:sticky lg:top-24 self-start">
+        <img
+          src="Static/statue.png"
+          alt="Research Symbol"
+          class="max-h-[300px] lg:max-h-[400px]"
+        />
+      </div>
     </div>
 
-    <div class="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-stretch">
-      <div class="w-full lg:w-1/4 flex justify-center lg:justify-start mb-10 lg:mb-0 lg:pr-8">
-        <div class="lg:sticky lg:top-24 self-start">
-          <img
-            src="Static/statue.png"
-            alt="Research Symbol"
-            class="max-h-[300px] lg:max-h-[400px]"
-          />
+    <!-- Right Column: Horizontal Scrolling Project Cards (Keep your original cards here) -->
+    <div class="w-full lg:w-3/4 lg:-mr-[50vw]">
+      <div class="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory custom-scrollbar pr-6 lg:pr-[50vw]">
+        
+        <!-- Fetal Health Card -->
+        <div class="min-w-[85%] sm:min-w-[60%] lg:min-w-[400px] snap-start bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition group/card">
+          <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Statistics</span>
+          <h4 class="text-xl font-semibold mt-2 mb-3 group-hover/card:text-blue-600 transition">Fetal Health Prediction</h4>
+          <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+            Logistic regression with PCA and PLS-DA comparisons for fetal heart data. Analyzing complex biological signals.
+          </p>
+          <a href="https://github.com/FJTDL/fetal-health" target="_blank" class="text-blue-600 text-sm font-bold inline-flex items-center">
+            View Project <span class="ml-2">→</span>
+          </a>
         </div>
-      </div>
 
-      <div class="w-full lg:w-3/4 lg:-mr-[50vw]">
-        <div class="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory custom-scrollbar pr-6 lg:pr-[50vw]">
-          <div class="min-w-[85%] sm:min-w-[60%] lg:min-w-[400px] snap-start bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition group/card">
-            <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Statistics</span>
-            <h4 class="text-xl font-semibold mt-2 mb-3 group-hover/card:text-blue-600 transition">Fetal Health Prediction</h4>
-            <p class="text-gray-600 text-sm mb-6 leading-relaxed">
-              Logistic regression with PCA and PLS-DA comparisons for fetal heart data. Analyzing complex biological signals.
-            </p>
-            <a href="https://github.com/FJTDL/fetal-health" target="_blank" class="text-blue-600 text-sm font-bold inline-flex items-center">
-              View Project <span class="ml-2">→</span>
-            </a>
-          </div>
+        <!-- Employment Card -->
+        <div class="min-w-[85%] sm:min-w-[60%] lg:min-w-[400px] snap-start bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition group/card">
+          <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Time Series</span>
+          <h4 class="text-xl font-semibold mt-2 mb-3 group-hover/card:text-blue-600 transition">Employment Modelling</h4>
+          <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+            Dynamic Regression with ARIMA errors to model job market trends across New Zealand.
+          </p>
+          <a href="https://github.com/FJTDL/employment" target="_blank" class="text-blue-600 text-sm font-bold inline-flex items-center">
+            View Project <span class="ml-2">→</span>
+          </a>
+        </div>
 
-          <div class="min-w-[85%] sm:min-w-[60%] lg:min-w-[400px] snap-start bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition group/card">
-            <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Time Series</span>
-            <h4 class="text-xl font-semibold mt-2 mb-3 group-hover/card:text-blue-600 transition">Employment Modelling</h4>
-            <p class="text-gray-600 text-sm mb-6 leading-relaxed">
-              Dynamic Regression with ARIMA errors to model job market trends across New Zealand.
-            </p>
-            <a href="https://github.com/FJTDL/employment" target="_blank" class="text-blue-600 text-sm font-bold inline-flex items-center">
-              View Project <span class="ml-2">→</span>
-            </a>
-          </div>
+        <!-- Keep remaining original cards below... -->
 
           <div class="min-w-[85%] sm:min-w-[60%] lg:min-w-[400px] snap-start bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition group/card">
             <span class="text-blue-400 font-bold text-xs uppercase tracking-widest">Research</span>
@@ -176,8 +203,11 @@
         </div>
       </div>
 
+
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <section id="contact" class="max-w-4xl mx-auto py-20 px-6">
     <h3 class="text-2xl font-semibold mb-6 border-b-2 border-blue-600 inline-block">Contact</h3>
