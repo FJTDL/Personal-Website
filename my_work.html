@@ -64,8 +64,8 @@
           </div>
           <h3 class="text-2xl font-bold text-gray-900 tracking-tight">Gravitational Waves</h3>
           <p class="text-gray-600 leading-relaxed text-sm md:text-base">
-            In 1915, Albert Einstein's general theory of relativity provided the strongest theoretical basis for the existence of gravitational waves, which had previously
-            been hypothesised. A century later, in 2015, the LIGO detector intercepted the first recorded gravitational wave, thus confirming their existence. Since then,
+            In 1915, Albert Einstein's general theory of relativity provided the theoretical basis for the existence of gravitational waves.
+            A century later, in 2015, the LIGO detector intercepted the first recorded gravitational wave, thus confirming their existence. Since then,
             we have been able to expand the number of detectors globally, improve their sensitivity, and use these waves to infer the event of their origin.
           </p>
           <div class="flex flex-wrap gap-2 pt-2">
@@ -120,9 +120,9 @@
           </div>
           <h3 class="text-2xl font-bold text-gray-900 tracking-tight">De-glitching</h3>
           <p class="text-gray-600 leading-relaxed text-sm md:text-base">
-            The first stage of my work involved the development of a Convolutional Neural Network (CNN) to learn the outline of glitches I simulate
-            from an open access Generalised Adversarial Network, gengli, through Python, where I inject these glitches into a simulated LIGO background
-            noise with Core-Collapse Supernovae signals injected as well. This time series data is then passed to a Continuous Wavelet Transform (CWT)
+            The first stage of my work involved the development of a Convolutional Neural Network (CNN) to learn the outline of glitches. Our glitches are simulated
+            from an open access Generalised Adversarial Network, gengli, through Python. I inject these glitches into a simulated LIGO background
+            noise series with Core-Collapse Supernovae signals injected as well. This time series data is then passed to a Continuous Wavelet Transform (CWT)
             that converts the time-domain data to the time-frequency domain, which I then convert to a scalogram as a graphical representation to allow
             the CNN to learn spatial features of the data in order to mask the sections of the transformed data the relate to the glitch - thus cleaning
             our data while leaving the signal intact for inference.
@@ -150,7 +150,7 @@
           <h3 class="text-2xl font-bold text-gray-900 tracking-tight">Neural Posterior Estimation (NPE)</h3>
           <p class="text-gray-600 leading-relaxed text-sm md:text-base">
             Our data does not lend itself to the standard Markov Chain Monte Carlo methods traditionally used in Bayesian statistics, so we instead utilise
-            deep learning a second time; here, to perform Neural Posterior Estimation, where we train a network to learn to predict a posterior distribution
+            deep learning a second time. Neural Posterior Estimation, involves training a network to learn to predict a posterior distribution
             in a matter of seconds if not less, based on the data. Our approach involves the use of normalising flows implemented through masked autoregressive
             flows.
           </p>
@@ -178,9 +178,9 @@
           <h3 class="text-2xl font-bold text-gray-900 tracking-tight">Core-Collapse Supernovae (CCSNe) Modulations</h3>
           <p class="text-gray-600 leading-relaxed text-sm md:text-base">
             After discussion with my supervisor, I am set to continue my research into 2027, where I will focus on applying deep learning 
-            methods to bridging the gap between the Newtonian simulation methods and the methods given by Einstein's relativistic equations.
+            to simulation of CCSNe and parameter estimation.
             This research is funded under a Marsden fund, and involves international collaborators from France and Kazakhstan, and aims to
-            reduce the time taken to simulate an accurate CCSN signal from months to days - ideally, <i>seconds</i>.
+            reduce the time taken to simulate an accurate CCSN signal.
           </p>
           <div class="flex flex-wrap gap-2 pt-2">
             <span class="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-md font-medium">CCSNe</span>
