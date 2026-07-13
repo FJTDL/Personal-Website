@@ -1,0 +1,6 @@
+title: Finn J.T. de Lange
+description: Statistician & Researcher Portfolio
+theme: minima # Or leave blank if using your custom CSS
+kramdown:
+  input: GFM
+  math_engine: mathjax
