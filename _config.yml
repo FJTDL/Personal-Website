@@ -4,3 +4,6 @@ theme: minima # Or leave blank if using your custom CSS
 kramdown:
   input: GFM
   math_engine: mathjax
+collections:
+  posts:
+    output: true
