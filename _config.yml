@@ -1,6 +1,9 @@
 title: Finn J.T. de Lange
 description: Statistician & Researcher Portfolio
-theme: minima # Or leave blank if using your custom CSS
+
+# Tell Jekyll not to enforce automated theme structures over your custom HTML
+theme: null
+
 kramdown:
   input: GFM
   math_engine: mathjax
