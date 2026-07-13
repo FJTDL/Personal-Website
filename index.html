@@ -1,3 +1,6 @@
+---
+# Empty front matter tells Jekyll to parse relative links on this page
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +31,7 @@
 </head>
 
 <body class="bg-gray-50 text-gray-800">
-  <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
+<nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-xl font-semibold tracking-tight">Finn J.T. de Lange</h1>
       <ul class="flex space-x-6 text-sm font-medium">
@@ -36,6 +39,7 @@
         <li><a href="#skills" class="hover:text-blue-600 transition">Skills</a></li>
         <li><a href="#projects" class="hover:text-blue-600 transition">Projects</a></li>
         <li><a href="#contact" class="hover:text-blue-600 transition">Contact</a></li>
+        <li><a href="{{ '/blog.html' | relative_url }}" class="text-blue-600 font-semibold hover:text-blue-700 transition">Blog</a></li>
       </ul>
     </div>
   </nav>
