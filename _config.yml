@@ -7,3 +7,4 @@ theme: null
 kramdown:
   input: GFM
   math_engine: mathjax
+  syntax_highlighter: null
