@@ -15,7 +15,7 @@ It gets you thinking, and before long you start to see a bigger picture.
 
 The Fisher information of a normal distribution is given as $\frac{1}{\sigma}$, so what happens if we start here? Well, there's only one variable: $\sigma$, which according to our frequentist paradigm is a "fixed but unknown parameter" (I prefer to consider it a random variable, but my opinion counts for nothing). In this sense, we can consider what happens as $\sigma$ changes. 
 
-For a distribution with large spread, the value of $\sigma$ is large, hence the Fisher information is small, as it is the reciprocal of $sigma$. Equally, for a distribution with low dispersion, $\sigma$ will be small, and hence the Fisher information will be large. 
+For a distribution with large spread, the value of $\sigma$ is large, hence the Fisher information is small, as it is the reciprocal of $\sigma$. Equally, for a distribution with low dispersion, $\sigma$ will be small, and hence the Fisher information will be large. 
 
 Great so, that was simple enough, but what does the big and small really *mean* here? 
 
