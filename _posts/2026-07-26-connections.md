@@ -2,7 +2,7 @@
 layout: null
 title: Connections
 date: 2026-07-26
-tags: [research]
+tags: [personal]
 ---
 
 One thing I always found disappointing about the high school experience was the lack of continuity. Studying physics without also studying the mathematics is lame, boring, and to some extent, both limiting and short-sighted. For me, I started wondering very quickly what the point of learning differential equations was in my calculus class if all we ever applied it to was modelling bacterial populations or Newton's law of cooling.
