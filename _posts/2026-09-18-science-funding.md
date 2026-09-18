@@ -9,7 +9,7 @@ I want to revisit my heavily biased and raging post on science funding.
 
 Not because I disagree with what I said in it, but because I want to highlight a point I think may have been lost:
 
-***<div align="center">Science makes money</div>***
+<div align="center">Science makes money</div>
 
 I don't think all science should be done with the intention of making money, but I know it's a good way to persuade people. But what I find especially interesting is venture capitalists. 
 
