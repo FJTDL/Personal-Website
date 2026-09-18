@@ -1,7 +1,7 @@
 ---
 layout: null
-title: The F-Word
-date: 2026-08-25
+title: Science Funding
+date: 2026-09-18
 tags: [personal]
 ---
 
@@ -9,7 +9,7 @@ I want to revisit my heavily biased and raging post on science funding.
 
 Not because I disagree with what I said in it, but because I want to highlight a point I think may have been lost:
 
-<div align="center">***Science makes money***</div>
+***<div align="center">Science makes money</div>***
 
 I don't think all science should be done with the intention of making money, but I know it's a good way to persuade people. But what I find especially interesting is venture capitalists. 
 
@@ -27,7 +27,7 @@ Problem is, everyone wants to invest in the big thing. Stuck record for certain,
 
 Question is: how do you fix this? The most common thing I see people saying is to educate. Educate everyone on what these things are, increase science education in schools, etc. However, I think the problem overlooked here is willingness. I loved science in high school, I did all three main sciences and both maths along with digital technologies, but I can tell you *right now* a lot of people didn't want to be in those classes, much less the junior science ones they had to do. The same problem exists with these investors, and while an argument could be made that if they don't work they have time to do this research, this is a sweeping generalisation. Most of the investors I know are more of the "work as much as possible and invest as much as possible" type. Granted, this is probably only until they don't have to, but for these people, they don't have the time to start from cell biology to build up the knowledge to understand lab-grown meat to a sufficient level.
 
-In an ideal world, the crappy businesses would vanish before anyone had the chance to invest—not happening. I don't really know if there is a solution here, but one thing I do like is spin-offs. The University of Auckland Bioengineering Institute has a reputation for producing a great many spin-off businesses in the medtech sector. This is excellent, as they are businesses spawned from high-level ideas from a reputable organisation where the innovators have to impress and prove. The university then reserves the right to invest, as do a range of other investors. These are the sorts of projects I'd like to see more of, and perhaps improve the ability for us to invest in such businesses. I've already spoken to the democratisation of the share market in New Zealand, but private ventures and the debt market are significant places to democratise as well. By allowing more people into these systems we allow the potential for more capital to flow into these businesses to help them grow, while also increasing the velocity of money in the economy, and providing opportunities to grow the economy more broadly. 
+In an ideal world, the crappy businesses would vanish before anyone had the chance to invest - reality called, that's not happening. I don't really know if there is a solution here, but one thing I do like is spin-offs. The University of Auckland Bioengineering Institute has a reputation for producing a great many spin-off businesses in the medtech sector. This is excellent, as they are businesses spawned from high-level ideas from a reputable organisation where the innovators have to impress and prove. The university then reserves the right to invest, as do a range of other investors. These are the sorts of projects I'd like to see more of, and perhaps improve the ability for us to invest in such businesses. I've already spoken to the democratisation of the share market in New Zealand, but private ventures and the debt market are significant places to democratise as well. By allowing more people into these systems we allow the potential for more capital to flow into these businesses to help them grow, while also increasing the velocity of money in the economy, and providing opportunities to grow the economy more broadly. 
 
 There will always be an argument that other businesses beyond science are just as good, but the reason I claim science in particular is the innovation side. Generally, businesses that have a new idea to bring to market have a more differentiable product than yet another accountancy. Nothing wrong with another accountant if it increases competition, but the best way to think of this is what happened with golden kiwifruit. Once golden kiwifruit hit the market, it quickly spread internationally. There wasn't another golden kiwifruit that was resistant to PSA, so it was a genuinely different product that could compete on a global stage for having solved a problem that other cultivars hadn't. To this day, it's a six-billion-dollar industry for the NZ economy.
 
