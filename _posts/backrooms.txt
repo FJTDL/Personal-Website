@@ -1,0 +1,430 @@
+---
+layout: null
+title: Downsampling troubles
+date: 2026-07-10
+tags: [research]
+---
+
+After the success of the de-glitching network, I have since moved into the Neural Posterior Estimation side of the problem. Here, I am to esimate the initial angular velocity, and the ratio of the rotational kinetic energy to the gravitational potential amplitude. Wordy, for sure, so just know:
+
+$$\beta = \frac{T}{|W|}$$
+
+Where $T =$ rotational kinetic energy, and $\lvert W \rvert =$ gravitational potential magnitude.
+
+The problem I'm having? My signals are *extremely* thin. It means when I use any form of pooling I wash out the signal completely, and that while strided convolutions have historically been my closest ally, they result in the model rapidly overfitting as it recognises my limited 1705 signals.
+
+It's a problem, but we'll fix it eventually!
+
+
+---
+layout: null
+title: Read a book, it might change your life, as it did mine.
+date: 2026-07-15
+tags: [personal]
+---
+
+I think mathematics education has a systemic problem from the earliest years. At the primary and even pre-schooling levels, children are taught concepts such as pattern finding and are introduced to numbers by people who they themselves frequently have a limited understanding of mathematics. That's not to say they teach it badly, but I noticed in my own schooling that many of my teachers clearly had a fear of maths themselves, and it meant that at times they couldn't teach us properly.
+
+
+Being an insomniac, there's not a lot to do except think as you stare at the ceiling and pray that sleep eventually hits you like a runaway bus. So, I've always played with maths as I lie there. Sometimes I wonder if that's why I'm an insomniac: Once I start thinking, I can't switch off until I have an answer, even if it means writing a 300-line program at 2 a.m. to prove something to myself. Regardless, it has always provided me with interesting thought experiments to perform, and definitely expands on the ability to mentally process complicated problems.
+
+
+The turning point for me was being stuck in "mandatory reading time" once a week in English class. Fiction stopped appealing to me early, and it was always dull forcing myself to read something for a book report when you frankly didn't care what the author's purpose was, and that stating it was a financial purpose often landed you in detention (all too often at that). One day, I found a copy of Steven Strogatz's *The Joy of X* and it fundamentally changed my life trajectory. The book is a very soft, non-rigorous introduction to mathematics from the most basic concepts all the way to some of the cutting-edge new research in the field. The explanations are intuitive and more importantly, make you think about maths without needing to think of equations, something many people find abhorrent. It was this book that started to change my perspective on mathematics. I went from "*how can I use calculus to find this instantaneous velocity at time $t$*" to "*how are we doing anything on an infinitesimally small space???*"
+
+
+Calculus is an excellent example of this, as while it is fundamentally useful for many things (as the engineer and other statisticians I live with will attest to), it is also a beautiful concept in and of itself. Think about it: we are claiming that we know the gradient between two points so small we cannot even measure it, and have to define limits to even comprehend exactly what we mean. Integration considers "the area under a graph" absolutely, but the Riemann integral defines this as dividing the region using rectangles so narrow their width approaches zero, but never reaches such a value, and that we then sum the area of these borderline area-less rectangles. This concept in particular is of use whenever I have to explain the difference of continuous and discrete random variables, but this presupposes not only the knowledge that this is a definition of an integral, but also sufficient interest to let me explain why infinitely thin rectangles are useful for your clearly non-rectangular curve.
+
+
+*The Joy of X* was probably the turning point of my teenage years in many ways. Today, I find it somewhat ironic that after years of building my understanding of algebra, trigonometry, calculus, set theory, statistical inference, and a range of other topics, my research is largely wondering why I can't force a knock-off brain analogue (neural network) to do exactly what I want. Although I don't use much of my previous studies in my work, it is incredibly rewarding to understand how the affine transformations and automatic differentiation behind the neural network are operating, and even more so that I now have sufficient understanding to self-teach more concepts.
+
+
+The statistics department at the University of Auckland has an excellent reputation, and stellar staff who are plenty willing to spend half an hour of their day explaining their theoretical basis for Bayesian sandwich estimators to someone they just met, or how conditioning an unbiased estimator on a sufficient statistic will guarantee equal or lower variance while maintaining its unbiasedness; something I am extremely grateful for.
+
+
+Moral of the story? Read a book, it might change your life.
+
+<img src="./Static/joy-x.jpg" alt="Joy of X" style="max-width: 100%; height: auto;" />
+
+---
+layout: null
+title: It's always the damned data
+date: 2026-07-17
+tags: [research]
+---
+
+In all science, the most common point of failure is human error. This obviously takes many forms depending on the problem at hand, but you can imagine that in statistics, the field that really defines what "data" even is, this problem is particularly damaging. 
+
+In our case, we are considering multi-million-dollar or, in some cases, even billion-dollar machines, so we have extremely few to work with. Even worse is that these machines are incredibly sensitive and prone to perturbation from even the most minor of external stimuli. 
+Naturally, simulation is the way to go, right? It's cheaper, and we can control for these random effects!
+
+Well, yes, but actually no.
+
+It depends on the event. For my work, a simulation in the correct level of accuracy can take up to three months even on a supercomputer, so "just simulate more" isn't exactly an option. Indeed, this is a problem I should like to fix one day, but for the time being, I have little choice.
+It is here I am grateful to our collaborators in Kazakhstan who have simulated a catalogue of signals for us to work with. Myself and one other student have been using this catalogue for our work in CCSN, but it is here our problem arises.
+
+The data is spread across three files—times, parameters, and the waves themselves—yet for no particularly discernible reason, the waves themselves are stored as the columns of the third file, not the rows. This was not a problem when I was working with image processing, as all that mattered there was the shape from the data and making the times line up.
+
+However, for parameter estimation, it became a wild goose chase.
+
+One detail of note is that prior to this research, I hadn't even touched machine learning, much less deep learning. I knew almost nothing of pooling or loss functions, and I suddenly had to work out how to use skip connections and U-Nets on a graphical representation I did not understand the math for, and upon completion of that challenge, jump into the cutting edge of simulation-based inference with neural posterior estimation. Even worse, my seniors under the same supervisor looked at my work with such apprehension, and claimed my techniques were "difficult" or in one case I heard one had "given up on that, it just wouldn't work."
+
+So when I found myself going in circles, I wasn't surprised. As I think my flatmates and close friends can attest to, I was never frustrated with this stage of the process, more amused and curious. However, a month went by and I seemed to fluctuate between dismal underfitting and rampant overfitting, both happening very quickly. It was at this point the structure of the data began to make me suspicious. After all, if the columns are the data in one, but the rows are in another, and we have to clean this ourselves, when we didn't simulate the data ourselves, how much human error have we introduced?
+
+Lo and behold, while staring at a particularly uninformed plot two days ago, the email comes in from my supervisor—a data error. Not the fault of anyone frankly, just a matter of fact. But the hard part? This data had been used for years before this was caught. Almost instantly, my model worked, and worked well at that. I sat back and thought to myself, "How many people must have gone bat-sh*t crazy because of something beyond their control, and never knew?"
+
+I think this proves a central point in science, though. Just because we have a reputation for doing erudite things, does not mean we do not make mistakes. In fact, I'd argue that when people consider a scientist smart and they think of a robust schooling, they don't realise that most of their actual knowledge comes from hours, if not days, weeks, months, or even years, of failure and mistakes.
+Failure doesn't feel great, but what I find is that when you love what you do, it doesn't feel bad either. It's still a positive result, really: what doesn't work is as important as what does.
+
+---
+layout: null
+title: Connections
+date: 2026-07-26
+tags: [personal]
+---
+
+One thing I always found disappointing about the high school experience was the lack of continuity. Studying physics without also studying the mathematics is lame, boring, and to some extent, both limiting and short-sighted. For me, I started wondering very quickly what the point of learning differential equations was in my calculus class if all we ever applied it to was modelling bacterial populations or Newton's law of cooling.
+
+It doesn't stop there. My final year of chemistry included a paper on thermodynamics - but why was this only in my chemistry class, and not also discussed in physics? It's not a problem per se, but understanding atomic structure (a unit of said thermodynamics paper) would have paired nicely with my paper in modern physics. In the same way, being taught that an alkane can form a haloalkane in the presence of UV and a halogen reagent but never learning why the UV was needed became a frustrating question my teachers would not, or perhaps *could not*, answer. Indeed, I noticed very early that physics education seemed to particularly focus on what is useful for an engineering degree, so I find it particularly odd that thermodynamics was always excluded from my physics classes. 
+
+One curious distinction I noticed early in my tertiary education was when universities drew a line between engineering and science. In New Zealand, many universities have all physics and engineering students take introductory physics papers together where they learn fundamental mechanical and electromagnetism concepts alongside some thermodynamics and waves, and in the same way, many have these same students pack in with other mathematical disciplines for their introductory mathematics papers. These tend to have uninspiring names such as "engineering physics 1", "mathematics for engineers", or even just "mathematics 1A". However, my alma mater draws a line: engineering students take engineering mathematics and engineering physics in the engineering faculty, while the science students have their own physics and mathematics papers. Why? Because the engineers decided they didn't need the epsilon-delta definition of a limit, nor to teach quantum mechanics. This is fair, although frankly epsilon-delta was an eye-opener for me. The salient point is, although we are now tailoring better towards the needs of these disciplines (or at least in theory) we are also isolating them from deeper understanding of the fields themselves in favour of teaching them "only what they need". On a tangent, a friend of mine is a teacher in training, and he laments how many degrees now feel vocational in their goals rather than educational, and I am inclined to agree.
+
+What I found is that at university there is definitely less of this style of "concepts in isolation", but that there is no time taken to draw connections, as we're somehow already behind on course content for the semester... which started today. It means that some revelations that actually improve our understanding of the broader field, but also the concepts themselves, are missed. For example, I have completed almost all the papers relevant to the standard frequentist inference of statistics, but it was in my Bayesian class where the lecturer asked a remarkably simple question I had no answer to: "Why is it called Fisher *information*?"
+
+It gets you thinking, and before long you start to see a bigger picture.
+
+The Fisher information of a normal distribution is given as $\frac{1}{\sigma^2}$, so what happens if we start here? Well, there's only one variable: $\sigma$, which according to our frequentist paradigm is a "fixed but unknown parameter" (I prefer to consider it a random variable, but my opinion counts for nothing). In this sense, we can consider what happens as $\sigma$ changes. 
+
+For a distribution with large spread, the value of $\sigma$ is large, hence the Fisher information is small, as it is the reciprocal of $\sigma$. Equally, for a distribution with low dispersion, $\sigma$ will be small, and hence the Fisher information will be large. 
+
+Great, so that was simple enough, but what does the big and small really *mean* here? 
+
+A lot of the frequentist papers teach Fisher information as the handy trick to calculating the asymptotic variance of the estimator by using the reciprocal. So to return to our over-dispersed example, $\sigma$ is large, so the Fisher information is small, so the variance is large - we are very uncertain about our estimator. This makes sense, as we have a highly varied estimator, so the "evidence" is quite spread out, we have a lower confidence. On the other hand, if $\sigma$ is small, then the Fisher information is large, so the variance is small - we are *more* confident about our estimator.
+
+So intuitively, having a lot of information means we're more confident in our estimates - it's a simple idea! 
+
+But it begs the question - why did I have to piece this together myself? I'm not complaining, I love pondering this kind of problem, but when I explained it to some friends with the same frequentist background I could visibly see the lightbulbs turn on. We now all feel much more confident about asymptotic estimation as well because we understand *why* the Fisher information is relevant. When we attain this deeper knowledge of our fields, we also tend to understand the concepts being taught better, instead of blindly trusting explanations and memorising formulae and concepts.
+
+These kinds of connections are everywhere, yet we have to piece them together. A similar lightbulb went off a few months ago when Wilks' theorem explained that double the difference between log-likelihoods converges in distribution to a chi-squared distribution. I remembered that in my statistical modelling courses we compared deviance, which is double the difference of the log-likelihoods, to a chi-squared distribution on $n-p$ degrees of freedom to assess model fit, with $n$ being the number of observations and $p$ the number of parameters we're fitting. Right there, not only do we see the connection with the formula, but we also were taught that for low sample sizes this fails. Why, Wilks' theorem is based on asymptotics! We *need* a large(ish) sample size for this to work, and if it doesn't we need to use bootstrapping or similar techniques that do not rely on this parametric result!
+
+Fields really should be studied together and have their connections well taught, as we begin to find fascinating applications that can solve meaningful and long-term problems by bringing new perspectives. What worries me is that other students are not making these same connections, and if they are not taught, at what point do we lose them? Has someone else written down my same incoherent rambling elsewhere? Has an AI worked this out in some high-dimensional vector space? 
+
+Regardless, I think the biggest change for me was my inference papers. Yes, I am at heart a Bayesian, but the connections we form from understanding the robust mathematics underpinning everything we do lifts the fog and allows us to see new opportunities.
+
+---
+layout: null
+title: Tax
+date: 2026-08-20
+tags: [personal]
+---
+
+I may regret expressing these views - I mean them from an economic perspective, not a political one. The two are often difficult to separate.
+
+Suffice to say I am pro-tax.
+
+Anyone who has taken an introductory economics class will know that tax is used primarily to generate revenue for a government, but that effective tax can be used to incentivise certain behaviours we want to encourage. One end of this is the FIF tax here in NZ, which taxes unrealised gains on shares held overseas (with some exceptions) that were purchased for more than $50,000 NZD. This is a policy that incentivises those with large amounts of money they want to invest to keep it inside the country and *should* therefore foster growth in businesses within the country. The incentive is to *not* pay the tax, as it is extremely undesirable. The other end of this spectrum is the Trump administration tariffs. These were introduced to encourage US citizens to purchase more domestic products (... not really) by increasing the cost of foreign products to compete with domestic ones - not accounting for the fact American labour is far more expensive than Vietnamese, for example. This provides leverage as it "encourages" countries to bend to American pressure and agree to certain deals, and it *should* support American business, and in theory helps with a trade deficit. 
+
+These are good ideas in theory, but reality is messy, and rarely works as intended. If we consider FIF again, part of the issue here is that the NZ stock market is rather stagnant, and has been for a long period of time. This means that when penalised with investing in foreign assets, the domestic alternative is so unflattering that when paired with generous rules about property investment you end up with a country where the overwhelming majority of wealth is tied to property ownership. What's sad about this is we then hear so much doom and gloom about how property ownership is unattainable for younger generations or those on low incomes and how evil property owners are - when they aren't!
+
+Fundamentally, can you really blame someone for making the decisions that best help them? Economic theory dictates that we should make the decisions that are in our best self-interest, so it's hardly surprising. Yes, there are some cases of total greed where people own in excess of 10 properties or treat tenants poorly, but for the average Kiwi this is not the case. This is where the tax argument becomes so problematic. Because of the vocal outcry on property prices, many parties are considering some form of capital gains or land tax, which I do support. It's not because I aspire to property ownership myself, in fact, I don't. I am extremely grateful to have lived in my parents' mortgage-free home, but when I see the extra hurdles they had to jump with rates, council regulations, and the hoops to jump through to renovate anything, I don't see the attraction in an incredibly expensive, non-liquid asset, especially when I prefer my lightweight, flexible lifestyle.
+
+So why do I support a property tax of some form? Because property is not a productive investment. Owning a property contributes much less to an economy than investing in a business, as the property will house a family sure, but the business will grow, hiring more people, and contribute to the economy through production and taxation. This is not to mention that not all property even houses families either; landbanking has become such a disgusting problem that even in cities with unaffordable housing large swathes of land sit totally vacant as someone awaits a greater profit. These are rarely if ever the middle-class property owners too, as they rely on a mortgage with repayments so they need renters. The landbankers are so wealthy they hardly need such income.
+
+This is our problem. The greed that comes with investing in financially viable yet non-productive assets. However, I don't entirely agree with FIF either. There is little wrong with Kiwis owning foreign assets, as it supports them, and still contributes to the wealth of the nation through tax on dividends, but we do need to incentivise investment within our country as well. This is where we need tax to be used *effectively* to incentivise investment. Allow foreign ownership by all means without a cap, maintain the PIE tax on dividends, but tax all sales of foreign assets at 5% or some other low rate. I do not mean the profit, I mean the value it is sold back for. This incentivises long-term holding of assets, and disincentivises investment in higher-risk foreign assets more likely to result in a loss of money. Meanwhile, NZ shares remain tax free on capital gain (or maybe 5% tax on the profit only), and dividends are taxed at the PIE. This means the cost of investing in NZ is lower than investing elsewhere, but that elsewhere investment is still contributing to the NZ economy. I believe in this same way, we need better access to purchasing debt-instruments domestically, and that we would benefit from a government fund used to support new businesses which any citizen or permanent resident could buy into, and their money would be spread across businesses like an ETF. This same fund could also be used to finance government infrastructure projects if there is no demand for capital from business, issued as government bonds, possibly at a higher rate than standard government bonds. If there is still somehow a surplus of investment, this highly regulated and government controlled pool of funds would be allowed to invest in foreign assets *tax free*. This means that there is a strong incentive to invest in this fund from all ends of the spectrum, as it invests in young Kiwi businesses with growth potential, helps fund government projects, and has the potential to be your only access to international assets tax free. There is even a world where people could be given flexibility in what assets they'd like to procure through this fund through a portal, with certain caveats, and perhaps a government management fee of 0.1% per dividend paid or asset sold for a profit.
+
+I see a common argument against tax in terms of "the government doesn't use my taxes properly!" to which I say "True". Objectively, there isn't a "right" way to use tax. I admit to wanting strong social services - free healthcare and education, benefits for those in need, providing job security to civil servants, and actually paying first responders properly. I do not find these to be outrageous desires myself, but I *am* biased; we all are. Each government knows they must do *some* form of balancing act across the wealth divide, and each party leans more towards one than the other. I'd love a world where the NZ government had to answer to a congress instead of being able to run around unchecked simply because they hold a majority in parliament, but I can see issues with that too. I think better would be to have ministries deliver forecasted outcomes of each policy and have these rejected if the perceived net benefit is negative. I see issues here too, but I strongly believe in the need for data-driven decision making and evidence-based policy creation. Shocking conclusions from a statistician, I know.
+
+In an election year, I find it simply ridiculous to see how the parties decide to slander each other. I know my bias, I know where my vote will go, but that is not to say I am exactly impressed with "my side" either. One silver lining is flying too far below the radar perhaps: the Opportunity Party are campaigning on regulating lobbying. We often get a news article about some corruption scandal, including recently from Fonterra and Z energy, but for some reason people just seem to forget this? They forget that the government that is supposed to be representing *us* is essentially allowing itself to corrupt to achieve a profit, compromising our health and environment. What's alarming is that some parties are starting to realise the danger this party poses, and are trying to slander them on questionable grounds. To claim they're hypocrites because they campaign on a donation cap but don't arbitrarily force one on themselves when they still don't even hold a seat in parliament is absurd; you don't disarm your own nuclear arsenal and *then* ask your enemy to do the same, you agree to terms *first* and *then* both begin to disarm while regularly checking on each other; something Russia and the USA did for a while. 
+
+I find it particularly irksome that one party with an exorbitant budget was already running slander ads about three parties, and recently went back and added Opportunity as a fourth in the same image. On one level, it's telling, on another, it's lazy! With all that budget the best you could think to do was squeeze another coloured bar into an image?
+
+As a young mathematical scientist, I believe that there is so much we could achieve from more quantitative analysis and decision making, and as a person I believe we need to end this pointless he-said-she-said and stop pushing over each others' sandcastles in the sandpit we call a parliament.
+
+---
+layout: null
+title: The F-Word
+date: 2026-08-25
+tags: [personal]
+---
+
+Funding is glorious and miserable.
+
+I was at a bar listening to a senior scientist responsible for much of the work in kiwifruit horticulture calling it the "F-word"; fitting.
+
+I think more principal is the issue of how funding is allocated. Take the following example:
+
+Project 1 creates a new kind of apple, except it's blue. People like apples, people like the novelty of blue apples. We expect that within 3 years of funding we can have these at market and have them contribute $500 million NZD a year to the economy.
+
+Project 2 investigates the medicinal properties of a plant you've never heard of before. No one has heard of it before, and few people understand chemistry well enough to know what the compounds in question even are. In 10 years, it *might* be worth $2 billion a year to the economy.
+
+People pick option 1. Almost every time.
+
+And I don't blame them. A bird in hand is worth two in the bush, after all! But the problem with this is we don't chase opportunity anymore. We get complacent with the cash crops/cows we have and refuse to chase new ones. This wouldn't be so bad if not for the fact that we then continue to reduce funding to research in these fields as well. In NZ, the coalition government of 2024–2026 "reorganised" public science from 7 Crown Research Institutes into 3 public research organisations (a downgrade in my eyes) and created a new PRO as well, while killing what was essentially the same thing under a different name (at least for the time being).
+
+While a great many words were used to describe this, the truth is simple: it's cheaper. Look no further than the fact that the CRI most relevant to NZ police, ESR, has remained untouched save for a name change to PHF. However, we merged the most profitable CRI in NIWA with one of the most middling in GNS to produce ESNZ. The problem here is that now there are essentially two divisions fighting for the same funding. NIWA was more profitable because what it did was more marketable; GNS is *not* easily marketable, but their work is fundamental to keeping people safe in a country as geologically active as NZ. So now we pit them against each other on less funding total?
+
+Then we reach the elephant in the room — the Bioeconomy Science Institute, BSI. To quote the same scientist I was at the bar with, "*I'd never heard of a bioeconomist until a few weeks ago*" because it sounds totally made up. Essentially, the government wanted a way to market four separate CRIs as one "biology-focused" business. Not a scientific group, a business. That's somewhat fair given some of its constituents in AgResearch and PFR were among some of the highest revenue/profits of all the CRIs, but these merged with Landcare Research and Scion, which are much less profitable. Ironically, the people at PFR frequently speak out about frustration with the NZ forestry industry, as do scientists at Landcare Research... fun fact, Scion is the science group that's been supporting that! So *now* these groups are under the same umbrella *and* fighting for funding when they each have fundamentally *different* goals and philosophies.
+
+The crown jewel here is the establishment of NZIAT — the New Zealand Institute for Advanced Technology. I'd be lying if I said this didn't excite me originally. But reality has hit me like a bus. For a group advertised as focusing on quantum technologies, synthetic biology, and AI, I should've realised that it's mostly *another* AI-focused entity. Sure enough, despite some money being thrown at some research in superconducting magnets (truly meaningful work with implications in nuclear fusion), the only real initiative put forward so far from NZIAT has been in AI, and it's a funding platform for AI companies. This is *not* science, this is a business incubator in disguise. It's ironic because the government disestablished Callaghan Innovation to create this, when Callaghan did the exact same thing, but was honest about it. I hope in future this PRO is taken in a better direction, but right now I'm disappointed that it appears to be yet another AI craze–driven nightmare.
+
+Funding is a miserable thing to obtain in any field. My associates love to complain about how hard it is in science, but it's even harder in statistics. You think it's hard justifying your new genetic markers for rat invasions? Try justifying the machine learning model to predict where the mice ARE. No one will believe you, few will understand it, less will know why you need the funding. My own field took a sizeable hit recently, as there will no longer be Marsden funding for our work in gravitational waves; research apparently has to be profitable now.
+
+My own work could probably be considered fundamental science, or a financial black hole depending on who you ask. My algorithms could be applied in profitable ways; certainly I wonder about their use for predicting geological hazards, but for social "profit" rather than financial. My work furthers cosmology and astrophysics. There will be some use to understanding these things, but it isn't as directly useful in an economic sense as optimal pest management routines. All you need to do is walk down a corridor at any university, particularly in science, engineering, or health faculties, and you will find countless ideas of extreme value to fund, with value both socially and fiscally. I saw recently the work of a post-doctoral fellow at the University of Waikato who made some incredible progress in bacteriophage research. Sparing detail, this is a possible treatment for drug-resistant bacteria, a growing problem. All she got was a handshake and $30,000. She needed *the kitchen sink*. Why we didn't hurl resources at her—staff, labs, funding, whatever else she needs—is beyond me. This has revolutionary opportunity for health for all life, immense financial potential, and would put New Zealand back on the map as an innovative country that punches above its weight. But we didn't, and we won't. Our politicians love to use Singapore as a model for what we should be like in terms of investment, electricity, water, or whatever other tree they decide to bark up... I never see them discussing how much money Singapore throws at R&D. It's massive, by the way.
+
+China is commonly a point of geopolitical tension for any number of reasons, but let's point out for a minute that this is a country run by engineers. Yes, they have had some issues economically due to a lack of understanding in these concepts from some politicians, but people marvel at the level of Chinese innovation — IT'S BECAUSE THEY FUND IT! The politicians *know* firsthand the value of these things. The current president is a chemical engineer by training, for crying out loud! I know a young researcher who flies to China to collaborate on horticultural ventures. I know an engineer who flies to China to study their supply chains and how their factories are organised. I look at China *myself* for their work in particle colliders and rocketry. There's the saying "*the grass is always greener on the other side*" and I acknowledge this is often a truism, but we can't complain the grass is greener and do *nothing* when we could definitely do *something*. One common issue in New Zealand? Businesses start here because of how generous we are in incentives and then they *leave*. We do not compete with international incentives, we do not produce enough skilled workers in the *needed* disciplines, and we don't invest enough. It's this shallow idea of throwing small sums of money at early-stage projects, bemoaning the lack of capital growth, abandoning these projects, and then being *surprised* when another country funds the other 25–50% of the research we *didn't*, and crying that it's unfair Kiwis leave the country. Gee, I wonder why.
+
+At some point, we have to fund new ideas, and as much as people will hate this, we need to fund *unprofitable ideas*. An idea failing isn't bad; it's actually still good science. We now know what *doesn't work*, and that can be more valuable than knowing what does work when the next scientist comes along. I loved the Disney movie *Meet the Robinsons* as a child, and the motto "*Keep moving forward*" comes to mind. We need to fail, we need to experiment, to take risks.
+
+---
+layout: null
+title: Polls are funny
+date: 2026-09-07
+tags: [musings]
+---
+
+"Polls are useless" no, polls are funny.
+
+A good quote I heard once was "reweighting is really the only reason polls aren't completely useless", and I am inclined to agree, except at the end of the day we have a very difficult time justifying quite how our weightings are applied for a population we have uncertainty about. More importantly, many polls are *biased*, but that's why some polls are more useful than others, and why they depend on their purpose.
+
+Objectively, you could use a misleading poll as propaganda, either to make opponents give up, or convince swing voters to join you. But polls are designed to be informative about a population, and that's why the poll-of-polls is generally more reliable. It's quite similar conceptually to the random forest algorithm - overfit as many trees as you like (knowing more is better), and average over them to get a better perception of reality. This isn't perfect, it's still very possible that every poll you poll is biased in the same direction, or that there is some other form of imbalance you don't know about (or equally *they* don't know about!).
+
+We can devise a great many ways to rebalance for this, but it's never going to be perfect, and that's ok. Statistics is all about drawing conclusions of random variables knowing that there will be some level of irreproducible noise, and although humans and especially human opinions are a messy one to understand, it's still somewhat possible. It's much akin to the jelly beans in a jar problem. If you have an unknown amount of jelly beans in a jar, and have an audience call out their estimates and you average that, the averages usually aren't especially bad estimates! It's called "wisdom of the crowds" which essentially goes back to the same idea of random forest: Smooth over lots of bias to obtain the truth.
+
+We can do similar with polls, and yes there will always be some level of noise we don't understand; if there wasn't, then we'd be called deterministicians! Below are some plots I made in R for this very musing. You can see some consistent trends, such as the sudden explosion of the Opportunities party in recent times, and the gradual drop-off for Te Pati in recent times, but you can very clearly see that the trends are inconsistent. Looking at the National party, while all organisations show some form of drop off with time, the Taxpayers Union-Curia shows a very different behaviour in recent times - this is known to be a somewhat biased poll, however. But this is good, as we have obtained variance in our trends. We know this election is more hotly contested than any in recent memory, so we expect some variance, bias, noise, and drift!
+
+<img src="./Static/organisation_polls.png" alt="organisation_polls" style="max-width: 100%; height: auto;" />
+
+What's more interesting is to look at the weighted averages of these polls by party. Weighted here meaning by the sample size of each poll, with larger samples being given more weight; this is still biased! I do not know which polls lean which way or if the samples obtained were fair, and I assume a level of reweighting from the poll producers that is absolutely wrong, purely because it can never be right! But what we see in this averaged bias is distinctive behaviours:
+
+1. All bar one poll show Labour rising to a peak in January 2026 then back down to a more baseline more inline with National.
+
+2. National is decreasing in all polls, usually at similar rates.
+
+3. Te Pati have been wounded by their internal party dilemma earlier in the year, with all bar one poll showing this. The same bar one is also that showing a different relationship for Labour, which also seems to be highly variant across all party plots, and a quick Google search indicates that this indeed may be a biased poll, which might explain why it has parties such as Green and Te Pati with much lower estimates than other polls.
+
+4. Opportunities dipped then saw a meteoric spike across *all* polls.
+
+<img src="./Static/weighted_average.png" alt="weighted averages" style="max-width: 100%; height: auto;" />
+
+There are a few other key trends we can observe in the likes of NSF looking something like a logistic curve and ACT looking like disorganised spaghetti, both being extremely curious behaviours, but equally, when looking at multi-coloured lines, we can read into things too deeply when there is really nothing there.
+
+But what my weighted-average black line shows appears to be a fair estimate for any of these parties, and appears to nicely smooth over the more unusual times quite well, demonstrating that the wisdom of the crowds allows us to ignore particularly odd ideas.
+
+For interest's sake, as of September the 7th, according to my analysis of the current averages, the party vote split would be:
+
+| Party | Bloc  | Party Vote (%) | Renormalised Share |
+|-------|-------|-----------------|---------------------|
+| ACT   | Right | 8.66            | 9.09%               |
+| GRN   | Left  | 12.2            | 12.79%              |
+| LAB   | Left  | 29.1            | 30.52%              |
+| NAT   | Right | 29.8            | 31.32%              |
+| NZF   | Right | 9.72            | 10.20%              |
+| OPP   | Left  | 5.80            | 6.09%               |
+
+Meaning the right bloc would just barely secure more vote at 0.506 compared to 0.494.
+
+Obviously, there are flaws in my analysis. Biases I haven't accounted for, electorates ignored, etc etc. But it's still an interesting experiment - let's see how well I fare in November.
+
+---
+layout: null
+title: Subjectivity of Virtuosity
+date: 2026-09-14
+tags: [personal, musings]
+---
+
+Aristotle believed that there were 11 virtues, which in a mathematical sense, are best described by negative quadratics. What I mean by this is that these virtues are reflected by being the "middle" of two extremes of this virtue. For example, pride: too little pride and you lack confidence, or perhaps you present yourself poorly, etc. Too much pride and you lean into overconfidence and arrogance. So, the happy medium is the optimal place to have the virtue of pride.
+
+Virtues and values are often overlooked in modern society or, I daresay, "weaponised". Discourse on ethical matters or what constitutes a right can be considered an argument of personal values, but the problem is that although we still call these things debate, the opposing sides have no interest in the other party's argument and only want to make the other feel stupid and insignificant. I have my own opinions on these matters, but when I find myself faced with someone strongly in an opposing camp, I feel no desire to argue (frankly it's pointless), but I do want to understand *why*. It's not that I seek to pull apart their argument, but I want to understand their thought process. One thing I try to emphasise to people is that I do not judge anyone's decisions provided they have genuinely thought about them. Although a decision may seem weird to us, there are certain intrinsic aspects that person cannot put into words for their decision. Even if they backtrack on their decision later, it doesn't mean it was the wrong decision at the time; it was simply that in their own mind, with what was known at the time, they made a conscious decision they found best. It's why voting is a curious problem.
+
+Socrates was suspicious of democracy, providing the analogy that when choosing the captain of the boat you are about to sail on, you choose the best captain available, not the one chosen by popular opinion (although a solid argument can be made for the wisdom of crowds, but ignore my diatribe). The oldest form of democracy, in Athens, had stipulations on sex, lineage, and freedom in order to be allowed to vote. The idea here was that these men would be able to make informed decisions in the best interest of the populace — although ignoring the voices of women and slaves seems like an interesting way to represent a "populace". Today, voting is generally a right, not a privilege that is earned, and before anyone argues as to which is right or wrong, fundamentally this same argument seems to return day to day in whether we allow 16 year olds to vote, or if a prisoner should be allowed to vote. Seeing as politics is a human invention not governed by any physical laws, I don't see how it's possible to even *have* right and wrong, but that is beside the point.
+
+Returning to Aristotle, when hearing of the concept of virtues a great many statisticians and social scientists think "*aha! I can use factor analysis here!*", which you could, but that is only a proxy variable, and what variables do you use to model the factor anyway? How do you measure them? I think at some point in our lives, we all hit low points or dark patches. What I find interesting was a theory a counsellor I knew once mentioned: the idea of value violation. The idea here is that everyone has a set of core values, such as happiness, freedom, financial security, and the like, and when these values are not met, we become unhappy. He sent me a link to try, and while I believe that some of these values (such as *health*) would be valued by everyone, I find it very interesting that the people I have convinced to do this I find very easy to get along with, because I know how to meet their values. For example, I know someone for whom certainty is her ultimate value. When we agree to meet at 0800 hours, I need to be there *by 0800 hours* or she will quickly feel like her needs aren't being met. Really, that's a fair argument; we all hate someone who is late! For me, I find the lack of curiosity alarming. Granted, I am not particularly driven to explore the world in that physical sense of curiosity, but if you tell me something works, I want to know *why*.
+
+Religion is a common battleground, and I refuse to get involved, but what I find most interesting is putting aside the afterlife, deities, and how it informs your voting: religions propagate values. Considering Christianity, the idea to "love your neighbour" is really about treating those around you with good grace. This makes sense, as it makes life more pleasant for everyone if we all get along, but why your neighbour? Because you see them. You live next to them. A neighbour is someone you have high potential to have friction with, so a good relationship reduces this. Islam is the youngest of the major Abrahamic religions, and it is well known Muslims do not eat pork. Pork is perceived as "unclean". It is believed that this stems from the fact pork is banned in Judaism due to how unclean the meat was (in ancient times it was only known that the meat caused sickness, not that this was caused by parasites), and that early Islam may have adopted this as they recognised the harm this meat was causing based on how it was handled in other religions. This is where I think religion is a good thing, as it can be used to extend messages of value and health. Yes, it also has the potential to spread misinformation and harm, but I am not seeking to debate the value of religion, only the way it can be used to spread messages of virtuosity. 
+
+What I find interesting about religion is how people choose to approach the afterlife. The oldest Hebrew and Greek texts of the Bible make no explicit mention of hell. Hell has become a punishment for those who, according to Christianity, are living without virtue and behaving in ways that are not consistent with the faith. This has led to some denominations being obsessed with the fear of going to hell, and some people who spend their entire lives trying to "save souls" from heading there, and being obsessed with joining heaven after their death. What is interesting here is that it seems the oldest versions of Christianity were more around "those who live with best virtue are rewarded, and the rest are not", while there are now interpretations of "those who live with best virtue are rewarded, and the rest are punished". Both interpretations are fine; like I said with politics, interpretation is up to you. I am an atheist. Not agnostic — an atheist. However, I would like to hope that if a religion is true, it is one where the prime mover is benevolent towards our species and the mistakes of the individual. Although not religious, I believe in redemption the same way three eagles went to Mordor that day.
+
+I do *not* mean to offend anyone. I find religion quite a beautiful thing, even if I believe there are many who interpret it in ways that harm others. But when you look at the beauty of Westminster Abbey, Notre-Dame, the Sagrada Família, and Mecca, you must acknowledge that we produce some amazing things as a species. I find Mecca a particularly sad one for me, as I would genuinely love to visit Mecca. However, as a non-Muslim, I cannot. I find this sad, but I acknowledge that this is not *my place*. It is a holy place for those who follow that religion. Although not a Christian, I find the churches I listed before to also be beautiful. A very fond memory for me as a child was lighting candles in these places following the death of a family member. Although not for religious reasons, there is a level of reverence for the place I was and the significance of the gesture in that faith.
+
+I find the classic argument of Onchocerciasis challenging the existence of God, as in, why would he make such a thing, to be overused. I also find the counter-argument that it was the challenge of that child or their family to be weak. For myself, I look to the creation of the universe with a level of skepticism on the whole. Although Hawking believed that the universe could spontaneously exist out of nothing through the laws of physics, we cannot definitively prove anything. I find the idea of there being nothing, then something, a bit absurd, and this somewhat informs my absurdist view on the universe. If there is a prime mover before the universe, I wonder if perhaps this being was, and perhaps still is, conducting an experiment. Many people of faith are accepting some scientific ideas such as evolution, so just bear with me: what if the universe was created by a being, but only in its most primitive form? What if it was simply BANG, here's a lot of energy? We know that mass and energy have an equivalence so that is handled; the only other thing we need is time, as gravity is simply a warping of spacetime due to mass. With that established, what if *everything* else is simply coincidence? That includes life, by the way.
+
+What I find amusing about this theory is that it means there is no meaning to life. While some schools of thought dictate the same, but that you can create your own meaning, I object on the basis of meaning being a personal value. Bringing us full circle to values, my motivation in my life is curiosity. I enjoy tackling problems to see what I can learn; I am a scientist in many ways. Yes, my work has spanned education, politics, astrophysics, botany, and a range of other problems, and I would probably enjoy many of the prediction problems a bank has, such as fraud and defaulting, in the same way I enjoy predicting the properties of dying stars. I find dying stars *more* interesting, as there is so much we do not know, but I fundamentally enjoy the practice of statistics across a range of fields — just particularly in science, and physics more precisely. Seeing the parallels to other fields is fascinating, and led to my recent work in polling. However, I still enjoy my gravitational waves the most, as I find them most interesting. Does this give me meaning? Not personally; I don't really define "meaning" for myself, but I believe in importance. Importance is also defined subjectively, and while I believe my work extending human knowledge of our universe is important, I find the works of teachers and doctors extremely important. Why? I value intelligence and curiosity, so my own work hits that, but we need good education to achieve this, and my value in health and certainty is reflected by my reverence for the medical professional: I can't do anything interesting if I'm dead.
+
+---
+layout: null
+title: Learning as a postgraduate
+date: 2026-09-15
+tags: [research]
+---
+
+Part of the joy (and challenge) as a research student is having to adapt to new techniques.
+
+I knew my work was going to be using PyTorch, and as I already have a Python background, I started learning PyTorch. Except I wasn't going to be working with MNIST, nor was I going to be making a linear predictor. No, I needed to replace sections of an image with something as close to the ground truth as possible, meaning I needed to learn not only how to process images with deep learning and thus the necessary architectures, I needed to learn how to handle the replacement aspect *and* what the image was. I have no background in time-frequency domain mathematics, or really even the frequency domain, so the jump going *past* the standard Fourier analysis straight to continuous wavelet transforms (CWT) and scalograms was very intimidating. I still don't completely understand the math, but I know it works, and it produces images I can work with. Learning I can't easily work directly on the image was helped by my computer science background in understanding data loss, but was still difficult, especially to explain to my supervisor. Granted, we had misunderstood someone else's work, and she cleared it up for us, but it was a very confusing time; fascinating, but confusing.
+
+I have found similar in my postgraduate taught papers. I don't really agree with the idea of making all students take either professional skills or statistical computing courses as postgraduates because the timing of them is poor (opposite semesters) and neither are especially relevant to my work, although I am grateful for the LaTeX exposure in professional skills. And Excel, for that matter. What I find is the same for many other students, whether they have to pick up new estimation methods, distributions they've never heard of, or programmes totally alien to them. The value of a postgraduate should be how they think; indeed, universities should be about teaching us how to think in ways relevant to our fields: think like an engineer, geologist, doctor, criminologist, economist, and whatever else. I also think there is great value in being a bit of a hybrid, knowing your own field but having exposure to others, which I think is especially valuable in statistics seeing as we go between other fields.
+
+Most recently, I have had to learn about chip architectures. Why? My code is *awful*.
+
+I have access to incredibly powerful data-centre-grade GPUs that my models hardly use, because while the PyTorch I used in my first network can be optimised for GPUs easily, my new code cannot. This is largely because the libraries are still young, but you can imagine my horror when I got an email that essentially read, "*Finn, your code is starving the CPU and drastically slowing everything down.*" 
+
+My confusion was simple: "*My code is optimised as much as possible, I don't generate data on the fly; it's on the disk...*" The consideration I had made to store on the disk results in a constant go-between for the GPU and CPU, meaning I actually use the CPU more than the GPU. Thankfully, my co-supervisor put me on a new machine benefitting from Apple silicon chips. Funnily enough, I originally trained models on my own M2 chip using MPS before I got access to the NVIDIA L40s, so this is familiar territory, albeit with a very different network to what I had in March.
+
+Better understanding cores, architectures, computation, and other hardware aspects is proving to be my current problem. I have a background in algorithmic analysis and in computational efficiency. Optimisation is something I enjoy anywhere, so I know how that works, but when faced with a breadboard, I'm hopeless. Not for lack of trying, but by total accident rather than design, I have a skillset totally geared towards using computers rather than building them or, indeed, understanding them. That may be a sad reflection of modern computer science degrees essentially being software development degrees in disguise. Come to think of it, my minor isn't called "Computer Science"—it is literally called "Software Development"! 
+
+The last time I tried to do anything with hardware myself, I ended up getting electrocuted by the same dishwasher twice in a 10-second interval.
+
+If you had told the me from six months ago the problem would be hardware, I don't think he'd (I'd?) be surprised, but perhaps misunderstand the problem. For years, the consensus in computer science was "memory is cheap, you can always buy more"—like *hell* I can just buy more! It means I can't really win on either front. It's rough, but it's really just peanuts when you consider my supervisor used to have MCMC algorithms running for weeks.
+
+I keep hearing about TPUs and "neural acceleration", but without laying eyes on them it's hard to tell exactly how beneficial they'd be. I know in computing 9% faster is a lot, but for me it's the difference between an eight-hour job and a just-over-nine-hour job, so it's really still marginal compared to models that take days to run.
+
+Times change, and I am ultimately extremely grateful for very intelligent people making things run better, but I would like it if I could actually afford the equipment I need.
+
+---
+layout: null
+title: Science Funding
+date: 2026-09-18
+tags: [personal]
+---
+
+I want to revisit my heavily biased and raging post on science funding.
+
+Not because I disagree with what I said in it, but because I want to highlight a point I think may have been lost:
+
+**Science makes money**
+
+
+I don't think all science should be done with the intention of making money, but I know it's a good way to persuade people. But what I find especially interesting is venture capitalists. 
+
+In my limited experience of talking with venture capitalists, they seem to love throwing money at "scientific projects" with grand goals. However, I'd argue that they throw money at particularly far-off goals. A quick example: I know an investor who got very interested in the classic "freeze someone with an untreatable disease, and wake them up when there's a cure". I see a few problems here:
+
+1. The general scientific consensus is that this doesn't seem possible.
+2. The market for this would be niche at best, and you run the operational risk of needing to hold someone's body for decades or more at a fairly high cost, and then of course they need to re-integrate with society at that point...
+3. This particular company looked to *dismember the body* before freezing. So, not only do you need to freeze and defrost (kitchen sink chicken?) them, you also need to... Frankenstein them.
+
+Surprise, the company was found to be led by no actual scientists, and collapsed a month later.
+
+This is, however, the exact problem I mean. Here's an individual with ample money and a desire to make more, with a willingness to invest in science projects, but lacking the scientific know-how to see value. There are a concerning number of "science" or "engineering/technology" businesses that are led and/or founded by those *without* a relevant background. Not always a problem—Steve Jobs was definitely nothing close to an electronics engineer—but it does make it hard to really tell which businesses are worthwhile investing in. 
+
+Problem is, everyone wants to invest in the big thing. Stuck record for certain, but AI is a good example. It's not healthy for other ventures when all of the capital tunnels to one opportunity. Perhaps the best example of this to me is weight loss drugs. It is absolutely insane to me that as companies begin rolling out medication for the most pervasive chronic disease in the world, which obviously has massive ramifications on human health, to these investors, it's a goldmine! Yet, you don't hear that much about it anymore. I've been seeing reports for a while now that suggest the health sector is as much as 20% undervalued, and based on another project of mine based on modern portfolio theory, I'd be inclined to agree.
+
+Question is: how do you fix this? The most common thing I see people saying is to educate. Educate everyone on what these things are, increase science education in schools, etc. However, I think the problem overlooked here is willingness. I loved science in high school, I did all three main sciences and both maths along with digital technologies, but I can tell you *right now* a lot of people didn't want to be in those classes, much less the junior science ones they had to do. The same problem exists with these investors, and while an argument could be made that if they don't work they have time to do this research, this is a sweeping generalisation. Most of the investors I know are more of the "work as much as possible and invest as much as possible" type. Granted, this is probably only until they don't have to, but for these people, they don't have the time to start from cell biology to build up the knowledge to understand lab-grown meat to a sufficient level.
+
+In an ideal world, the crappy businesses would vanish before anyone had the chance to invest - reality called, that's not happening. I don't really know if there is a solution here, but one thing I do like is spin-offs. The University of Auckland Bioengineering Institute has a reputation for producing a great many spin-off businesses in the medtech sector. This is excellent, as they are businesses spawned from high-level ideas from a reputable organisation where the innovators have to impress and prove. The university then reserves the right to invest, as do a range of other investors. These are the sorts of projects I'd like to see more of, and perhaps improve the ability for us to invest in such businesses. I've already spoken to the democratisation of the share market in New Zealand, but private ventures and the debt market are significant places to democratise as well. By allowing more people into these systems we allow the potential for more capital to flow into these businesses to help them grow, while also increasing the velocity of money in the economy, and providing opportunities to grow the economy more broadly. 
+
+There will always be an argument that other businesses beyond science are just as good, but the reason I claim science in particular is the innovation side. Generally, businesses that have a new idea to bring to market have a more differentiable product than yet another accountancy. Nothing wrong with another accountant if it increases competition, but the best way to think of this is what happened with golden kiwifruit. Once golden kiwifruit hit the market, it quickly spread internationally. There wasn't another golden kiwifruit that was resistant to PSA, so it was a genuinely different product that could compete on a global stage for having solved a problem that other cultivars hadn't. To this day, it's a six-billion-dollar industry for the NZ economy.
+
+I am not an economist, and I have undoubtedly said something controversial or just blatantly wrong in this. I can't pretend to be able to forecast exact behaviours, but as the saying goes, "No one can predict the future, least of all an economist".
+
+---
+layout: null
+title: The sole of inventory
+date: 2026-09-19
+tags: [personal]
+---
+
+Buying shoes is an incredibly painful exercise. I don't mind shopping, but I tend to find that shoes are a colossal pain, probably because I have wide feet that few manufacturers seem to account for when designing footwear. What stings even more is rifling through the inventory of rather ugly sneakers or uncomfortable loafers until you find your Goldilocks, then realise it was definitely *gold*ilocks when you find it costs *three times* what the detritus you rummaged through was selling for.
+
+But we love a good optimisation problem, right? Obviously, there is the subjective opinion; when I call something heinous or find it painful to wear, there are probably three people for whom it ticks their boxes of what they're looking for. Now the fact those shoes are so much cheaper would suggest few people want them and are offloading the stock for better options... but I digress.
+
+The question is, when I have to spend \$200 for a decent pair of casual shoes, how much did the retailer buy them for, how many do they have, in what sizes and colours, and is that the *optimal* number to maximise profit? 
+
+When inventory has stayed for too long, do a clearance sale and dump the slow movers to get in that which will sell. That's a standard idea, but you still bought that inventory, so you don't want to totally write it off. You still want some money for it, so it depends on how much you value freeing up inventory vs recouping some loss. If you know one particular shoe will sell like crazy next week no matter what markup you put on it, it may be pertinent to give away or otherwise scrap your current stock instead of risking a clearance sale that doesn't get rid of every pair. But if your business is in dire need of capital to make the next order and you can't get financing, a clearance sale of maybe 10% might be all you need. 
+
+The question I annoyed my friend with was simple: what do you think the total value of inventory in that store was?
+
+Firstly, do we value it based on what it was bought from the supplier at, the retail price, or some other metric? On that, as this was an outlet for a chain, what level of risk do they take in having as many shoes as they do, should the store be burgled or catch fire? Risk is a fascinating concept. My old optimisation classes explained that decision making can be optimised according to utility functions, and I found it absolutely delightful to have mathematical formulae to motivate daily decisions — something I continue to bug friends and family to think in terms of.
+
+But let me pose to you a different question: is the risk of two stores having the same value of inventory the same?
+
+Consider store A, a shoe store (for consistency) and store B, an electronics store, both with an inventory valued at \$1 million. If you consider motivations for burglary, for example, we would naturally consider the electronics store to be at greater risk. Electronics can be much smaller than shoes, and are generally more valuable per unit than shoes (some exceptions, of course). If both stores were completely burgled, then the cost to the businesses is the same, but you can pretty much guarantee the electronics store will have more security than the shoe store. One aspect this problem does not account for is *time*. An electronics store with an inventory of only \$1 million sounds quite unrealistic today, but for a given hour or day in time, it may be realistic. What we also need to consider is turnover. The shoe shop may only receive one shipment a week, worth \$1 million, and that may be what they sell in a week. The electronics shop may get new stock every day, or some other more regular frequency. The obvious advantage here is that in the event of fire or burglary there is less stock than there could be, but equally this stock must be stored somewhere else before coming to your store, and the environmental and financial aspects of more frequent shipping must be accounted for.
+
+I love these kinds of problems, as these decision making processes are usually informed by data analysis, meaning you can analyse the data, draw conclusions and make recommendations, then optimise on that same report for the final supply chain decisions — full circle. This has become a massive area of investment with e-commerce, with goals of making sure enough product are at each location to be sold quickly, allowing the best turnaround without unnecessarily clogging up shelves. Complex machine learning algorithms, time series forecasting, consumer behaviour analytics, and a host of other statistical techniques are thrown at these kinds of problems with great success. What's even better is these techniques can be generalised to focus not only on profit, but on social and environmental aspects too.
+
+The F1 calendar is notorious for being an environmental trainwreck, flying all over the world, including doubling back on itself in the European segment alone, twice. People have long proposed more environmentally conscious methods of hosting these events, which ironically also save on fuel cost, but there are other reasons why this current calendar is more profitable, which changes the decision making process. Point is, an environmentally optimised version isn't that hard to do in this day and age, with fans working it out themselves.
+
+This kind of process or supply chain engineering can be applied anywhere; the reason hospitals in NZ don't stock antivenom is because we don't have snakes (yet...), so the shelf space needed for antivenom in the off-chance one gets into the country and bites someone isn't as valuable as more flucloxacillin. We talk about it as expected value: the cost of a bite might be high (lethal) but we don't expect any, so the expected value is low, while the number of people with bacterial infections will be high, and even if the cost isn't that high, the expected value is much greater than none.
+
+It's about data-driven decisions under uncertainty. We don't know exactly what will happen, but we can make informed predictions about what might, and optimise from there.
+
+---
+layout: null
+title: Mathematical maturity
+date: 2026-09-19
+tags: [personal]
+---
+
+I should probably admit I used to fear mathematics.
+
+It's kind of funny, but when I was in intermediate I actually missed the day my teacher explained the classic idea of solving for an unknown number: *x*.
+
+The result? I used to think *x* was a placeholder for 24. It's the 24th letter in the alphabet after all. But here's what is truly bizarre: during my placement exam before starting high school, my mathematics was sufficient to land in the 3rd stream—effectively meaning I was marginally better than average. In the one week before they then also streamed mathematics, I learned algebra from a very hard, cold, and strict man.
+
+I was placed into 2nd stream mathematics. There was a hypothesis that we were actually slightly lower than the other 2nd stream class but eh, hearsay. What is funnier to me is my teachers were shocked at my dismal algebra skills and wanted to know how I had done so well in my placements. Funny answer: I did it all numerically.
+
+See, as I struggled to understand algebra in intermediate, I took up a different approach upon arriving in high school: vary the inputs until it gets close. This eventually morphed into my way of stepping through different roots by starting with known roots either side of a number and working towards it, among other strategies.
+
+Eventually I did in fact learn algebra; thank god. But to this day, calculus is my favourite. I especially appreciate numerical approximation techniques, as I recognise that they're the more advanced fix of what I did for years. Since learning the joy of analytical methods, I now tend to solve problems analytically while falling asleep instead of numerically, too.
+
+The change for me came from my senior school mathematics teachers, who inflicted upon me rigorous mathematics and exceptional pedagogy. I take a great deal of solace that one of the fastest mathematicians I met in my undergrad is now training to be a teacher, as he already insists on ensuring students know arithmetic before trigonometry or algebra—atomism at its finest.
+
+The term "mathematical maturity" apparently haunts most students on the UoA subreddit, but I agree with people needing to build this. The cynical response I used to hear from parents complaining to each other, presumably assuming that, as children, we were too stupid to understand, was that primary school teachers rarely have a good math background because "*they're all failed actors or musicians, they suck at math*". As much as I would like to push back on that... a good number of my teachers were from exactly those backgrounds, and did, in fact, suck at maths.
+
+That's not to say all primary school teachers have poor mathematical ability—certainly I had some that were exceptional—and I think part of the problem is the "*nothing is good enough for **my** child*" mentality many parents seem to have, blaming their children's struggles in arithmetic on the teachers. If you asked a primary school teacher to find the antiderivative of a natural logarithm, then I'm certain they'd look horrified. But I think we miss the point that, well, they don't need to know it?
+
+Don't get me wrong, I'd love a world where everyone is highly mathematically literate. I think it would be much harder to mislead people, and that many more would be in better control of their finances in such a world. But this is not reality, and the elephant in the room is: mathematics is very broad. When people picture mathematics, they often think of whiteboards covered in equations, like the sort you'd see from me when I use them. But this is based on movies of the space race, physicists, or the sort of "beautiful mind" that results in partial differential equations of maximum likelihood estimation, while leaving forgotten the worlds of graph theory, combinatorics, and a range of other such fields.
+
+The idea of "mathematical maturity" isn't about rote learning as much mathematics as possible; it's about facing new problems from a mathematical perspective. My calculus exams from high school tried to emphasise this by combining aspects of trigonometry and numerical integration as steps to complete before solving a larger problem. Now ironically, I used the Newton-Raphson algorithm to find one of the roots in my exam after I couldn't be bothered with the algebra to find the root analytically (at the time, I still wasn't an algebra fan...). It's a great concept, but it takes time to build.
+
+At the same time though, there is a level of "what do you really *need*?"
+
+I present three cases:
+
+Person A aspires to a career in statistics, but really wants to focus on fixing what he doesn't know, and what he can't easily learn by himself. So, he's taking the hardcore probability/stochastics papers while also learning about regression, operations research, and statistical computing from global experts. Not only will he develop good mathematical maturity, but he will also develop a broad mix of mathematical abilities.
+
+Person B aspires to a research career in statistics within a particular niche. He doesn't *love* the math but he doesn't oppose it either. He will be made to take a particular paper to close a certain gap identified by a higher-up, which he doesn't oppose. He knows it will be hard, as he is skipping a pre-requisite, but he sees the value. Provided he is motivated to be there, he will do well.
+
+Person C aspires to research in statistics education. So far she's focused on analysis programming principles, and is being "strongly" encouraged to do the same paper as person B. However, her supervisor questions the value of it, and she herself isn't particularly thrilled about the idea of the paper, especially as her research is less quantitative and more qualitative.
+
+For these people, we have Person A who is aware of *potential* weaknesses and looking to fix them, Person B who has been made aware of a *realised* weakness and made to fix them, and Person C who is being told to fix a *far-off potential* weakness. Unlike Person A, Person C has a clear direction in statistics education, and knows that the work from that paper will not be as valuable as another in a different topic. Since Person A is yet to specialise, it makes sense for him to take this paper, and for Person B who is specialising in a field, it is necessary to. Person C may get some value from this paper down the line, but the thing we often overlook is motivation. I found those math-heavy papers to be enjoyable, but only because I really wanted to be in them. If you don't, such as Person C, then it's questionable as to if you'd even realise the value of the paper or retain any knowledge. Absolutely, Person C would get something out of it, but for a future researcher in statistics education, why would we make her fill *that* gap when we could instead have her take a course in *statistics education*? To me, that's a much more obvious gap to fill.
+
+For myself, I was told that I would get a lot of value out of the highest level regression paper, with many claiming it would make my work in machine learning easier. My counter argument? How about I take the *machine learning paper*? I had no formal background, and while everyone claimed I had already learned more than I would get out of the course, I am currently *in* said course and finding significant value from a range of other machine learning techniques, even if that which is most relevant to my work is only six hours of content well below what I currently do. The understanding of machine learning from first principles is the value for me, but also through non-parametric models I have been able to expand my knowledge. Finally, I see *why* LDA assumes multivariate normality from a derivation; *thank god, a derivation*. 
+
+Being formally taught neural networks from the ground up will also be valuable to me. Sure, I've been doing this for about nine months now, but I still don't really understand pooling (although most modern literature seems to avoid it too) and I'll still be grateful for an experienced mind explaining multilayer perceptrons and image processing to me, even if I'm quite comfortable with them.
+
+This is my point though: mathematical maturity doesn't necessarily derive from the same pathways. Yes, we should all learn arithmetic and basic algebra, as well as (in my opinion) a bit of higher level algebra and calculus. From this point though? Go nuts, do what interests you. I saw today a student I have long considered quite gifted in mathematics and his understanding of statistics in a mathematics education class. Now he's a fairly awkward man, but I saw him having a great chat with his peers about the latest in mathematics education and how to explain difficult concepts to young learners. Feynman used to believe an idea was only good if you could explain it to anyone, so maybe we all ought to take a class or two in mathematics education.
+
+As mathematicians and statisticians, we love linearity. But life is inherently non-linear, so why do we assume the same path works for everyone?
+
+---
+layout: null
+title: That looks great! It's probably wrong!
+date: 2026-09-25
+tags: [research, musing]
+---
+
+"All models are wrong, but some are useful" - George Box, 1976
+
+"My model looks excellent, so I know I've done something wrong" - Finn de Lange, 2026
+
+Statistics is a funny discipline. As a student, you get used to having to check model assumptions, such as a chi-squared test for goodness of fit, if your residuals are normally distributed, heteroscedasticity, normality, etc.
+
+You learn these things to realise when they do not hold. You do this so you can correct the model and make it as good as possible.
+
+Real data sucks. Real data has been dragged through the mud, spray-painted blonde, set on fire, and then randomly pushed into a corner haphazardly. I'm not talking about data cleaning—I mean the *genuine data itself*. If your data looks perfect, then someone has probably messed up in the collection process, or you've over-sanitised it. My work in machine learning is even worse though, because I don't really get to have proper checks like this. I have ways to check for over/underfitting, absolutely, but because I do not have a parametric model, I don't have parametric assumptions to check; I have data in, prediction out.
+
+That's not to say what I do is wrong or bad, I'd argue that it is a case-by-case situation. The fact industry tends to prefer non-parametric models and doesn't properly check the assumptions of parametric ones is more indicative of the predictive accuracy non-parametric models have, and the lower value given to explainability, as you would have with a simple linear regression, for example.
+
+But because we always get used to things looking "a bit off" or assumptions never quite being met—such as even being taught that despite LDA being based on a multivariate normal distribution, you can get away with data that is not normally distributed—when you get a good result, your first thought is usually "****".
+
+It's because you're almost certain you messed up somewhere, and now need to go back and find where in hundreds of lines of code, or in your sampling or experiment design, you made the fatal error.
+
+It means you can never accept a good thing. 
+
+But that's why my work makes me laugh. Because of the data issue, I was convinced I would obtain an atrocious fit eventually. But instead, my best predictive models are... good? Yet also... fast????
+
+Because I have... well, bugger all samples, I find it *quite* likely my models are learning to overfit, or something like that. But even so, I find it funny that my first thought was to assume I was completely wrong. After the first good result, I needed a *week* to convince myself that what I had was actually good. Something a *lot* of students share feelings on is imposter syndrome, and I get that, I feel that way too—but to the extent I don't believe a good thing when it happens! It's a good confidence booster.
+
+Personally, I always liked to confirm a result using multiple methods, but that isn't always possible. Take my work predicting if an earthquake is reported: when giving three different techniques all the same variables, we obtain 0.92 AUC with XGBoost, 0.88 with Random Forest, and 0.22 with a binomial GLM. Yes, I later found that I could improve the binomial by removing variables, but for my gluttonous approach (FEED THEM EVERYTHING) it does poorly. It means that while I'm thrilled with the performance of my tree-based ensembles, I likely need another non-parametric method as a comparison, such as a neural network, instead of my tightly restrained GLM method. It is just as well we do not use such models to make causal claims.
+
+In my own research, I know my model always either damages the CCSN signal a bit or leaves a bit of the glitch behind—because it is wrong. But that doesn't mean it is useless.
+
+"You can never have the true model, there never was one. Yet you may model the world as if there were one, and that is often enough." - Finn again, still 2026
