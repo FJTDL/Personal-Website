@@ -2,7 +2,7 @@
 layout: null
 title: The sole of inventory
 date: 2026-09-19
-tags: [personal]
+tags: [musings]
 ---
 
 Buying shoes is an incredibly painful exercise. I don't mind shopping, but I tend to find that shoes are a colossal pain, probably because I have wide feet that few manufacturers seem to account for when designing footwear. What stings even more is rifling through the inventory of rather ugly sneakers or uncomfortable loafers until you find your Goldilocks, then realise it was definitely *gold*ilocks when you find it costs *three times* what the detritus you rummaged through was selling for.
