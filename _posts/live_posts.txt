@@ -28,3 +28,41 @@ The Malthusian model is a horrifying concept, claiming that the only way to mean
 So I sat back, pondering how I arrived at global health concerns and a pariah economic model when I just wanted to get rich, and realised how extremely lucky I am. The classic "grass is always greener on the other side" seems to ignore the less fortunate sides, indeed even when we may have just crawled out of these ourselves.
 
 My core takeaway? Just take the ETFs, and diversify a bit into fixed income and commodities while you're at it.
+
+
+---
+layout: null
+title: Conservation genetics
+date: 2026-11-25
+category: musings
+---
+
+Genetics is fascinating, that's why I'm more than happy to leave it to the geneticists.
+
+I'd been attending some workshops in statistical genetics recently, more out of curiosity than anything. Well, that and I was bored.
+
+However, an interesting concept that makes total sense when you think about it was the relationship between heterozygosity and inbreeding. Without excessive detail, everyone inherits two alleles (versions) of the same gene from each parent. If these alleles are different, then you are heterozygous. If we now consider a population where most people are homozygous (inherited the same version of allele from each parent), then we generally know that either that allele is the most valuable for that environment, or that there has been some level of inbreeding, due to related individuals with the same alleles breeding and passing them on to their children.
+
+I imagine some ethics committee is getting ready to cane me for talking about this hypothetical surrounding humans, so let's pivot to aardvarks. If we have three separate populations of aardvark, perhaps separated by a geographical barrier such as a deep river or a mountain range, then it is unlikely an aardvark will travel to another population, even if they both swiped right. This means that within each population, the total gene pool is fixed, with only mutation slowly bringing in new alleles. If instead the distance was maybe a few kilometers walk, then our aardvark might trundle off for a lovely evening and a few years of unplanned parenthood. In doing so, there have been alleles from population A introduced to population B, thus increasing the genetic diversity of population B - great! Tough luck for A though, they just lost a family member, and their gene pool is no better off if not worse.
+
+Aardvarks are not an endangered species, but Kiwi are, so let's change tack and focus on the Rowi, the rarest Kiwi of all.
+
+When a population is small, then the gene pool is also very small, and there comes great risk to the entire species of extinction, particularly by disease. The Rowi population once fell below 200 birds, a very small gene pool. Kiwi also have the unendearing trait of being able to cross-breed, but not necessarily produce fertile offspring. So, what could we do?
+
+People who have built entire careers on such questions and birds have very good answers here, rooted in conservation practices, genetics, ecology, and animal husbandry. I propose a hyper un-realistic solution spanning hundreds of years on islands that do not exist with a larger population of birds than we actually have. I propose this not explicitly for Rowi, but to illustrate a point I will return to later. First, what is this cockamamie idea?
+
+Firstly, assume we can drop a decent-sized population of birds onto a set of $n$ predator-free offshore islands. Since these birds cannot fly, they cannot migrate between islands. Let's also suppose these islands all have different selection pressures: climates, geographies, native predators, food abundance, disease, etc. We now leave these birds alone for centuries. This is a stochastic process, or really a set of them. Each island has a population that fluctuates with time, including the non-zero risk of extinction. Because these islands each differ, birds will evolve on them differently, with mutations introducing new alleles over successive generations. On each island, sub-populations may emerge. Say some birds wander across a valley and get stuck, resulting in a population only on the north-facing side of the island with warmer temperatures and more berries than grubs, resulting in birds with less plumage and are more herbivorous than insectivorous. 
+
+At this point, we have a set of $n$ island populations, where each island quite likely has a sub-population or so depending on geographical barriers and factors about the island such as size (larger islands may develop more sub-populations). Assuming each island has a population close to carrying capacity, due to having been left alone for centuries, we now take a sample of birds from each island at random, and introduce all of these birds into another new environment, such as mainland NZ. This process has essentially "forced" $n$ distinct island populations, each with an unknown number of sub-populations, to mutate new traits and adapt to their environment. By bringing them together, we have achieved a genetic explosion. By introducing different birds to a new environment we now have a diversity of alleles that introduces greater resilience to the species, increasing their survival chances on the mainland (assuming we have improved the living environment somewhat). However, over time, each island will slowly increase in the average "kinship" or allele sharing between birds. For this reason, we now also introduce a small set of birds from each island to the other islands, introducing new alleles to each gene pool while also maintaining the population size on each island. 
+
+In a few generations, the birds on the mainland will be totally different from each of the island populations, despite being descendants. By maintaining the island populations and regularly relocating birds between populations, including occasionally to the mainland, or even taking mainland birds back to the islands, we effectively produce subspecies or varieties that ensure genetic diversity.
+
+However, does this not beg a sort of "Ship of Theseus" question: if we force these birds to evolve as separate populations and then bring them back together, did we really save the original species, or have we forced the evolution of multiple subspecies and derived what should theoretically be the closest analogue to the mainland species? I leave that for philosophers and conservationists, as this would never be in practice anyway.
+
+That was some grunty explanation, but let me explain my point.
+
+Fishing reserves.
+
+There has been a lot of discourse in NZ about allowing fishing in reserves. I want to make it clear that I say this from a non-partisan point of view, but we should *never* allow fishing in these reserves. A common case study in statistics shows that the Goat Island reserve in North Auckland increased the fisheries population in the surrounding waters that *can* be fished more than if we *also* allow fishing within the reserve. A similar story is unfolding in Hahei, with fishery stocks increasing steadily. The value of these fisheries is they provide sanctuaries for the young fish to grow, but that they also provide grounds for population health. By ensuring waters where species can come together, we produce spaces where members of a species can breed and spawn, securing the population long term, while also ensuring that a new disease doesn't wipe out our entire fishing industry.
+
+One reason NZ is a world leader in kiwifruit was our work in developing golden kiwifruit resistant to the Psa bacterium. Without genetic editing/engineering, this is only possible by having a sufficiently diverse population where we can identify alleles that when expressed make these plants resilient to disease. Even if we weren't dealing with the effects of climate change, pollution, and a host of factors changing the environment, the world rarely stays still - we need genetic diversity for both survival and plenty.
